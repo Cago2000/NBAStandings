@@ -1,5 +1,4 @@
 from nba_api.stats.endpoints import LeagueStandings
-from utils.team_names import TEAM_NAME_TO_FULL
 
 def fetch_standings():
     """Fetch NBA standings with full team names."""
