@@ -16,7 +16,7 @@ DATA_DIR = os.path.join(BASE_DIR, "jsons")
 os.makedirs(DATA_DIR, exist_ok=True)
 
 LOG_FILE = os.path.join(DATA_DIR, "fetcher.log")
-#setup_logging(LOG_FILE)
+setup_logging(LOG_FILE)
 
 OUTPUT_FILE = os.path.join(DATA_DIR, "standings.json")
 PORT = config.get("pc_port", 8000)
