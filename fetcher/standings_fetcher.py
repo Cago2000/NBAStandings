@@ -11,7 +11,7 @@ def fetch_standings():
             conf = row['Conference']
             if conf in result:
                 result[conf].append({
-                    "team": TEAM_NAME_TO_FULL.get(row['TeamName']),
+                    "team": f"{row["TeamCity"]} {row['TeamName']}",
                     "games_behind": float(row['ConferenceGamesBack']),
                     "wins": int(row['WINS']),
                     "losses": int(row['LOSSES'])

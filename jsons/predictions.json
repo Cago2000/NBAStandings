@@ -14,7 +14,7 @@
       {"team": "New Orleans Pelicans", "seed": 11},
       {"team": "Memphis Grizzlies", "seed": 12},
       {"team": "Phoenix Suns", "seed": 13},
-      {"team": "Portland Trailblazers", "seed": 14},
+      {"team": "Portland Trail Blazers", "seed": 14},
       {"team": "Utah Jazz", "seed": 15}
     ],
     "East": [
@@ -50,7 +50,7 @@
       {"team": "Phoenix Suns", "seed": 11},
       {"team": "Sacramento Kings", "seed": 12},
       {"team": "Memphis Grizzlies", "seed": 13},
-      {"team": "Portland Trailblazers", "seed": 14},
+      {"team": "Portland Trail Blazers", "seed": 14},
       {"team": "Utah Jazz", "seed": 15}
     ],
     "East": [
@@ -86,7 +86,7 @@
       {"team": "Sacramento Kings", "seed": 11},
       {"team": "New Orleans Pelicans", "seed": 12},
       {"team": "Phoenix Suns", "seed": 13},
-      {"team": "Portland Trailblazers", "seed": 14},
+      {"team": "Portland Trail Blazers", "seed": 14},
       {"team": "Utah Jazz", "seed": 15}
     ],
     "East": [

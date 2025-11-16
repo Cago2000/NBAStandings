@@ -15,7 +15,7 @@ with open(CONFIG_FILE) as f:
 DATA_DIR = os.path.join(BASE_DIR, "jsons")
 os.makedirs(DATA_DIR, exist_ok=True)
 
-LOG_FILE = os.path.join(DATA_DIR, "fetcher.log")
+LOG_FILE = os.path.join(BASE_DIR, "logs/fetcher.log")
 setup_logging(LOG_FILE)
 
 OUTPUT_FILE = os.path.join(DATA_DIR, "standings.json")

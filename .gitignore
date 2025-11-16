@@ -1,5 +1,6 @@
 /.venv
 /jsons/config.json
+/logs/fetcher.log
 /.idea
 **/__pycache__
 /dist
