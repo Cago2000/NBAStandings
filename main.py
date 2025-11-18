@@ -26,8 +26,8 @@ threading.Thread(target=auto_update_standings, args=(STANDINGS_OUTPUT_FILE, 10),
 threading.Thread(target=auto_update_mvp_ladder, args=(MVP_LADDER_OUTPUT_FILE, 3600), daemon=True).start()
 
 # === Start Cloudflared tunnel in background ===
-tunnel = CloudflareTunnel(tunnel_name="nba-standings", debug=False)
-tunnel.run_in_background()
+tunnel = CloudflareTunnel(tunnel_name="nba-standings", debug=True)
+#tunnel.run_in_background()
 
 # === Start web server ===
 start_web_server("website/index.html", config.get("pc_port", 8000))
