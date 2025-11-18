@@ -1,4 +1,5 @@
 import time, os, json
+from fetcher.mvp_ladder_fetcher import fetch_mvp_ladder
 from fetcher.standings_fetcher import fetch_standings
 
 def save_json(data, output_file):
@@ -16,4 +17,13 @@ def auto_update_standings(output_file, update_interval):
             save_json(data, output_file)
         else:
             print("Failed to fetch standings, retrying later...")
+        time.sleep(update_interval)
+
+def auto_update_mvp_ladder(output_file, update_interval):
+    while True:
+        data = fetch_mvp_ladder()
+        if data:
+            save_json(data, output_file)
+        else:
+            print("Failed to fetch mvp ladder, retrying later...")
         time.sleep(update_interval)

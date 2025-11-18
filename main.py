@@ -1,33 +1,35 @@
 import os
 import json
 import threading
-from fetcher.auto_update import auto_update_standings
+
+from fetcher.auto_update import auto_update_standings, auto_update_mvp_ladder
 from server.web_server import start_web_server
 from utils.logger import setup_logging
 from cloudflare.cloudflare_tunnel import CloudflareTunnel
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CONFIG_FILE = os.path.join(BASE_DIR, "jsons/config.json")
 
+CONFIG_FILE = os.path.join(BASE_DIR, "jsons/config.json")
 with open(CONFIG_FILE) as f:
     config = json.load(f)
 
-DATA_DIR = os.path.join(BASE_DIR, "jsons")
-os.makedirs(DATA_DIR, exist_ok=True)
-
 LOG_FILE = os.path.join(BASE_DIR, "logs/fetcher.log")
-setup_logging(LOG_FILE)
+if config["log_to_file"]:
+    setup_logging(LOG_FILE)
 
-OUTPUT_FILE = os.path.join(DATA_DIR, "standings.json")
-PORT = config.get("pc_port", 8000)
-UPDATE_INTERVAL = config.get("update_interval", 600)
+# === Init JSON Paths ===
+STANDINGS_OUTPUT_FILE = "jsons/standings.json"
+MVP_LADDER_OUTPUT_FILE = "jsons/mvp_ladder.json"
 
-# === Start auto-update thread ===
-threading.Thread(target=auto_update_standings, args=(OUTPUT_FILE, UPDATE_INTERVAL), daemon=True).start()
+# === Start auto-update threads ===
+threading.Thread(target=auto_update_standings, args=(STANDINGS_OUTPUT_FILE, 10), daemon=True).start()
+
+threading.Thread(target=auto_update_mvp_ladder, args=(MVP_LADDER_OUTPUT_FILE, 3600), daemon=True).start()
 
 # === Start Cloudflared tunnel in background ===
 tunnel = CloudflareTunnel(tunnel_name="nba-standings", debug=False)
 tunnel.run_in_background()
 
 # === Start web server ===
-start_web_server(OUTPUT_FILE, os.path.join(BASE_DIR, "template.html"), PORT)
+start_web_server("website/index.html", config.get("pc_port", 8000))
+

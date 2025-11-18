@@ -13,6 +13,12 @@
       "losses": 5
     },
     {
+      "team": "Atlanta Hawks",
+      "games_behind": 2.5,
+      "wins": 9,
+      "losses": 5
+    },
+    {
       "team": "New York Knicks",
       "games_behind": 2.5,
       "wins": 8,
@@ -20,12 +26,6 @@
     },
     {
       "team": "Toronto Raptors",
-      "games_behind": 3.0,
-      "wins": 8,
-      "losses": 5
-    },
-    {
-      "team": "Atlanta Hawks",
       "games_behind": 3.0,
       "wins": 8,
       "losses": 5
@@ -43,28 +43,28 @@
       "losses": 5
     },
     {
-      "team": "Orlando Magic",
-      "games_behind": 4.0,
-      "wins": 7,
-      "losses": 6
-    },
-    {
       "team": "Miami Heat",
       "games_behind": 4.0,
       "wins": 7,
       "losses": 6
     },
     {
-      "team": "Chicago Bulls",
-      "games_behind": 4.0,
-      "wins": 6,
-      "losses": 5
+      "team": "Boston Celtics",
+      "games_behind": 4.5,
+      "wins": 7,
+      "losses": 7
     },
     {
-      "team": "Boston Celtics",
-      "games_behind": 5.0,
-      "wins": 6,
+      "team": "Orlando Magic",
+      "games_behind": 4.5,
+      "wins": 7,
       "losses": 7
+    },
+    {
+      "team": "Chicago Bulls",
+      "games_behind": 4.5,
+      "wins": 6,
+      "losses": 6
     },
     {
       "team": "Charlotte Hornets",
@@ -74,18 +74,18 @@
     },
     {
       "team": "Brooklyn Nets",
-      "games_behind": 9.5,
-      "wins": 1,
-      "losses": 11
-    },
-    {
-      "team": "Washington Wizards",
-      "games_behind": 9.5,
-      "wins": 1,
+      "games_behind": 9.0,
+      "wins": 2,
       "losses": 11
     },
     {
       "team": "Indiana Pacers",
+      "games_behind": 10.0,
+      "wins": 1,
+      "losses": 12
+    },
+    {
+      "team": "Washington Wizards",
       "games_behind": 10.0,
       "wins": 1,
       "losses": 12
@@ -112,21 +112,21 @@
     },
     {
       "team": "Houston Rockets",
-      "games_behind": 3.5,
-      "wins": 8,
+      "games_behind": 3.0,
+      "wins": 9,
       "losses": 3
     },
     {
       "team": "San Antonio Spurs",
-      "games_behind": 4.0,
-      "wins": 8,
+      "games_behind": 3.5,
+      "wins": 9,
       "losses": 4
     },
     {
-      "team": "Phoenix Suns",
+      "team": "Golden State Warriors",
       "games_behind": 4.5,
-      "wins": 8,
-      "losses": 5
+      "wins": 9,
+      "losses": 6
     },
     {
       "team": "Minnesota Timberwolves",
@@ -135,28 +135,28 @@
       "losses": 5
     },
     {
-      "team": "Golden State Warriors",
+      "team": "Phoenix Suns",
       "games_behind": 5.0,
       "wins": 8,
       "losses": 6
     },
     {
       "team": "Portland Trail Blazers",
-      "games_behind": 6.0,
+      "games_behind": 6.5,
       "wins": 6,
-      "losses": 6
+      "losses": 7
     },
     {
       "team": "Utah Jazz",
-      "games_behind": 8.0,
-      "wins": 4,
+      "games_behind": 7.5,
+      "wins": 5,
       "losses": 8
     },
     {
       "team": "LA Clippers",
-      "games_behind": 8.0,
+      "games_behind": 8.5,
       "wins": 4,
-      "losses": 8
+      "losses": 9
     },
     {
       "team": "Memphis Grizzlies",
@@ -165,22 +165,22 @@
       "losses": 10
     },
     {
-      "team": "Sacramento Kings",
-      "games_behind": 9.5,
-      "wins": 3,
+      "team": "Dallas Mavericks",
+      "games_behind": 9.0,
+      "wins": 4,
       "losses": 10
     },
     {
-      "team": "Dallas Mavericks",
-      "games_behind": 9.5,
+      "team": "Sacramento Kings",
+      "games_behind": 10.0,
       "wins": 3,
-      "losses": 10
+      "losses": 11
     },
     {
       "team": "New Orleans Pelicans",
-      "games_behind": 10.0,
+      "games_behind": 10.5,
       "wins": 2,
-      "losses": 10
+      "losses": 11
     }
   ]
 }
