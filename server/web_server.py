@@ -9,15 +9,16 @@ def start_web_server(template_file, web_port):
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s.bind(('0.0.0.0', web_port))
     s.listen(5)
-    print(f"Web server running on http://localhost:{web_port}")
+    print(f"Web server running on http://0.0.0.0:{web_port}")
 
     while True:
         cl, addr = s.accept()
         with cl:
             try:
-                request = cl.recv(2048).decode()
+                request = cl.recv(4096).decode()
+                if not request:
+                    continue
                 path = request.split(" ")[1]  # extract requested path
-                print(path)
                 data = {
                     "Standings": load_standings("jsons/standings.json"),
                     "Standings_Predictions": load_standings_predictions("jsons/standings_predictions.json"),
@@ -25,23 +26,33 @@ def start_web_server(template_file, web_port):
                     "MVP_Predictions": load_mvp_predictions("jsons/mvp_predictions.json")
                 }
 
-                if path == "/":
-                    cl.send(b"HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n")
-                    cl.send(template.encode())
+                match path:
+                    case "/":
+                        body = template.encode()
+                        content_type = "text/html"
+                    case "/data.json":
+                        body = json.dumps(data).encode()
+                        content_type = "application/json"
+                    case "/style.css":
+                        with open("website/style.css", "rb") as f:
+                            body = f.read()
+                        content_type = "text/css"
+                    case "/app.js":
+                        with open("website/app.js", "rb") as f:
+                            body = f.read()
+                        content_type = "application/javascript"
+                    case _:
+                        body = b"404 Not Found"
+                        content_type = "text/plain"
 
-                elif path == "/data.json":
-                    cl.send(b"HTTP/1.0 200 OK\r\nContent-Type: application/json\r\n\r\n")
-                    cl.send(json.dumps(data).encode())
+                headers = (
+                    f"HTTP/1.1 {'200 OK' if path in ['/', '/data.json', '/style.css', '/app.js'] else '404 Not Found'}\r\n"
+                    f"Content-Type: {content_type}\r\n"
+                    f"Content-Length: {len(body)}\r\n"
+                    f"Connection: close\r\n\r\n"
+                ).encode()
 
-                elif path == "/style.css":
-                    with open("website/style.css", "rb") as f:
-                        cl.send(b"HTTP/1.0 200 OK\r\nContent-Type: text/css\r\n\r\n")
-                        cl.send(f.read())
-
-                elif path == "/app.js":
-                    with open("website/app.js", "rb") as f:
-                        cl.send(b"HTTP/1.0 200 OK\r\nContent-Type: application/javascript\r\n\r\n")
-                        cl.send(f.read())
+                cl.sendall(headers + body)
 
             except Exception as e:
                 print("Error handling request:", e)
