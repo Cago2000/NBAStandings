@@ -1,9 +1,8 @@
 import os
 import json
 import threading
-
-from fetcher.auto_update import auto_update_standings, auto_update_mvp_ladder
 from server.web_server import start_web_server
+from fetcher.auto_update import auto_update_standings, auto_update_mvp_ladder
 from utils.logger import setup_logging
 from cloudflare.cloudflare_tunnel import CloudflareTunnel
 

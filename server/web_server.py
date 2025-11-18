@@ -17,7 +17,7 @@ def start_web_server(template_file, web_port):
             try:
                 request = cl.recv(2048).decode()
                 path = request.split(" ")[1]  # extract requested path
-
+                print(path)
                 data = {
                     "Standings": load_standings("jsons/standings.json"),
                     "Standings_Predictions": load_standings_predictions("jsons/standings_predictions.json"),
@@ -25,7 +25,11 @@ def start_web_server(template_file, web_port):
                     "MVP_Predictions": load_mvp_predictions("jsons/mvp_predictions.json")
                 }
 
-                if path == "/data.json":
+                if path == "/":
+                    cl.send(b"HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n")
+                    cl.send(template.encode())
+
+                elif path == "/data.json":
                     cl.send(b"HTTP/1.0 200 OK\r\nContent-Type: application/json\r\n\r\n")
                     cl.send(json.dumps(data).encode())
 
@@ -38,10 +42,6 @@ def start_web_server(template_file, web_port):
                     with open("website/app.js", "rb") as f:
                         cl.send(b"HTTP/1.0 200 OK\r\nContent-Type: application/javascript\r\n\r\n")
                         cl.send(f.read())
-
-                else:
-                    cl.send(b"HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n")
-                    cl.send(template.encode())
 
             except Exception as e:
                 print("Error handling request:", e)
