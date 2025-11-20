@@ -75,10 +75,10 @@ th {
   background-color: #333;
   color: #fff;
 }
-td.win { color: #27ae60; font-weight: bold; }
-td.loss { color: #e74c3c; font-weight: bold; }
-tr.mvp_match { background-color: #27ae60; color: #000000; font-weight: bold; }
-tr.match { background-color: #27ae60; color: #000000; font-weight: bold; }
+td.win { color: #00d359; font-weight: bold; }
+td.loss { color: #d11100; font-weight: bold; }
+tr.mvp_match { background-color: #00d359; color: #000000; font-weight: bold; }
+tr.match { background-color: #00d359; color: #000000; font-weight: bold; }
 tr.almost-match { background-color: #f1c40f; color: #000; font-weight: bold; }
-tr.playoff_seed { background-color: gold; color: #000000; font-weight: bold; }
-tr.playin_seed { background-color: #ff9500; color: #000000; font-weight: bold; }
+tr.playoff_seed { background-color: #0659b1; color: #ffffff;}
+tr.playin_seed { background-color: #3516c3; color: #ffffff;}
