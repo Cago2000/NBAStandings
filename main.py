@@ -23,7 +23,7 @@ MVP_LADDER_OUTPUT_FILE = "jsons/mvp_ladder.json"
 # === Start auto-update threads ===
 threading.Thread(target=auto_update_standings, args=(STANDINGS_OUTPUT_FILE, 10), daemon=True).start()
 
-threading.Thread(target=auto_update_mvp_ladder, args=(MVP_LADDER_OUTPUT_FILE, 3600), daemon=True).start()
+threading.Thread(target=auto_update_mvp_ladder, args=(MVP_LADDER_OUTPUT_FILE, 30), daemon=True).start()
 
 # === Start Cloudflared tunnel in background ===
 tunnel = CloudflareTunnel(tunnel_name="nba-standings", debug=True)
