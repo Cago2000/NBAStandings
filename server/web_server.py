@@ -1,5 +1,6 @@
+import mimetypes
+import os
 import socket
-import json
 from utils.loader import *
 
 def start_web_server(template_file, web_port):
@@ -18,7 +19,7 @@ def start_web_server(template_file, web_port):
                 request = cl.recv(4096).decode()
                 if not request:
                     continue
-                path = request.split(" ")[1]  # extract requested path
+                path = request.split(" ")[1]
                 data = {
                     "Standings": load_standings("jsons/standings.json"),
                     "Standings_Predictions": load_standings_predictions("jsons/standings_predictions.json"),
@@ -33,17 +34,16 @@ def start_web_server(template_file, web_port):
                     case "/data.json":
                         body = json.dumps(data).encode()
                         content_type = "application/json"
-                    case "/style.css":
-                        with open("website/style.css", "rb") as f:
-                            body = f.read()
-                        content_type = "text/css"
-                    case "/app.js":
-                        with open("website/app.js", "rb") as f:
-                            body = f.read()
-                        content_type = "application/javascript"
                     case _:
-                        body = b"404 Not Found"
-                        content_type = "text/plain"
+                        fs_path = path.lstrip("/")
+                        file_path = os.path.join("website", fs_path)
+                        if os.path.isfile(file_path):
+                            with open(file_path, "rb") as f:
+                                body = f.read()
+                            content_type = mimetypes.guess_type(file_path)[0] or "application/octet-stream"
+                        else:
+                            body = b"404 Not Found"
+                            content_type = "text/plain"
 
                 headers = (
                     f"HTTP/1.1 {'200 OK' if path in ['/', '/data.json', '/style.css', '/app.js'] else '404 Not Found'}\r\n"
