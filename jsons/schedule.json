@@ -1,7 +1,47 @@
 {
   "Friday, 21 Nov 2025": [
     {
-      "time": "21:00",
+      "time": "02:00PM",
+      "away": "IND",
+      "home": "CLE",
+      "game_status": "Final",
+      "away_score": 109,
+      "home_score": 120
+    },
+    {
+      "time": "02:30PM",
+      "away": "BKN",
+      "home": "BOS",
+      "game_status": "Final",
+      "away_score": 113,
+      "home_score": 105
+    },
+    {
+      "time": "02:30PM",
+      "away": "WAS",
+      "home": "TOR",
+      "game_status": "Final",
+      "away_score": 110,
+      "home_score": 140
+    },
+    {
+      "time": "03:00PM",
+      "away": "MIA",
+      "home": "CHI",
+      "game_status": "Final",
+      "away_score": 143,
+      "home_score": 107
+    },
+    {
+      "time": "03:30PM",
+      "away": "NOP",
+      "home": "DAL",
+      "game_status": "Final",
+      "away_score": 115,
+      "home_score": 118
+    },
+    {
+      "time": "04:00PM",
       "away": "MIN",
       "home": "PHX",
       "game_status": "Final",
@@ -9,7 +49,7 @@
       "home_score": 114
     },
     {
-      "time": "21:30",
+      "time": "04:30PM",
       "away": "DEN",
       "home": "HOU",
       "game_status": "Final",
@@ -17,7 +57,7 @@
       "home_score": 109
     },
     {
-      "time": "22:00",
+      "time": "05:00PM",
       "away": "OKC",
       "home": "UTA",
       "game_status": "Final",
@@ -25,7 +65,7 @@
       "home_score": 112
     },
     {
-      "time": "22:00",
+      "time": "05:00PM",
       "away": "POR",
       "home": "GSW",
       "game_status": "Final",
@@ -35,7 +75,7 @@
   ],
   "Saturday, 22 Nov 2025 (Today)": [
     {
-      "time": "13:00",
+      "time": "08:00AM",
       "away": "LAC",
       "home": "CHA",
       "game_status": "Final",
@@ -43,7 +83,7 @@
       "home_score": 116
     },
     {
-      "time": "17:00",
+      "time": "12:00PM",
       "away": "NYK",
       "home": "ORL",
       "game_status": "5:00 pm ET",
@@ -51,7 +91,7 @@
       "home_score": 0
     },
     {
-      "time": "19:00",
+      "time": "02:00PM",
       "away": "ATL",
       "home": "NOP",
       "game_status": "7:00 pm ET",
@@ -59,7 +99,7 @@
       "home_score": 0
     },
     {
-      "time": "20:00",
+      "time": "03:00PM",
       "away": "WAS",
       "home": "CHI",
       "game_status": "8:00 pm ET",
@@ -67,7 +107,7 @@
       "home_score": 0
     },
     {
-      "time": "20:00",
+      "time": "03:00PM",
       "away": "DET",
       "home": "MIL",
       "game_status": "8:00 pm ET",
@@ -75,7 +115,7 @@
       "home_score": 0
     },
     {
-      "time": "20:30",
+      "time": "03:30PM",
       "away": "MEM",
       "home": "DAL",
       "game_status": "8:30 pm ET",
@@ -83,7 +123,7 @@
       "home_score": 0
     },
     {
-      "time": "22:00",
+      "time": "05:00PM",
       "away": "SAC",
       "home": "DEN",
       "game_status": "10:00 pm ET",
@@ -93,7 +133,7 @@
   ],
   "Sunday, 23 Nov 2025": [
     {
-      "time": "13:00",
+      "time": "08:00AM",
       "away": "MIA",
       "home": "PHI",
       "game_status": "1:00 pm ET",
@@ -101,7 +141,7 @@
       "home_score": 0
     },
     {
-      "time": "18:00",
+      "time": "01:00PM",
       "away": "CHA",
       "home": "ATL",
       "game_status": "6:00 pm ET",
@@ -109,7 +149,7 @@
       "home_score": 0
     },
     {
-      "time": "18:00",
+      "time": "01:00PM",
       "away": "ORL",
       "home": "BOS",
       "game_status": "6:00 pm ET",
@@ -117,7 +157,7 @@
       "home_score": 0
     },
     {
-      "time": "18:00",
+      "time": "01:00PM",
       "away": "LAC",
       "home": "CLE",
       "game_status": "6:00 pm ET",
@@ -125,7 +165,7 @@
       "home_score": 0
     },
     {
-      "time": "18:00",
+      "time": "01:00PM",
       "away": "BKN",
       "home": "TOR",
       "game_status": "6:00 pm ET",
@@ -133,7 +173,7 @@
       "home_score": 0
     },
     {
-      "time": "19:00",
+      "time": "02:00PM",
       "away": "POR",
       "home": "OKC",
       "game_status": "7:00 pm ET",
@@ -141,7 +181,7 @@
       "home_score": 0
     },
     {
-      "time": "20:00",
+      "time": "03:00PM",
       "away": "SAS",
       "home": "PHX",
       "game_status": "8:00 pm ET",
@@ -149,7 +189,7 @@
       "home_score": 0
     },
     {
-      "time": "20:00",
+      "time": "03:00PM",
       "away": "LAL",
       "home": "UTA",
       "game_status": "8:00 pm ET",
@@ -159,7 +199,7 @@
   ],
   "Monday, 24 Nov 2025": [
     {
-      "time": "19:00",
+      "time": "02:00PM",
       "away": "DET",
       "home": "IND",
       "game_status": "7:00 pm ET",
@@ -167,7 +207,7 @@
       "home_score": 0
     },
     {
-      "time": "19:00",
+      "time": "02:00PM",
       "away": "CLE",
       "home": "TOR",
       "game_status": "7:00 pm ET",
@@ -175,7 +215,7 @@
       "home_score": 0
     },
     {
-      "time": "19:30",
+      "time": "02:30PM",
       "away": "NYK",
       "home": "BKN",
       "game_status": "7:30 pm ET",
@@ -183,7 +223,7 @@
       "home_score": 0
     },
     {
-      "time": "19:30",
+      "time": "02:30PM",
       "away": "DAL",
       "home": "MIA",
       "game_status": "7:30 pm ET",
@@ -191,7 +231,7 @@
       "home_score": 0
     },
     {
-      "time": "20:00",
+      "time": "03:00PM",
       "away": "DEN",
       "home": "MEM",
       "game_status": "8:00 pm ET",
@@ -199,7 +239,7 @@
       "home_score": 0
     },
     {
-      "time": "20:00",
+      "time": "03:00PM",
       "away": "POR",
       "home": "MIL",
       "game_status": "8:00 pm ET",
@@ -207,10 +247,34 @@
       "home_score": 0
     },
     {
-      "time": "20:00",
+      "time": "03:00PM",
       "away": "CHI",
       "home": "NOP",
       "game_status": "8:00 pm ET",
+      "away_score": 0,
+      "home_score": 0
+    },
+    {
+      "time": "04:30PM",
+      "away": "HOU",
+      "home": "PHX",
+      "game_status": "9:30 pm ET",
+      "away_score": 0,
+      "home_score": 0
+    },
+    {
+      "time": "05:00PM",
+      "away": "UTA",
+      "home": "GSW",
+      "game_status": "10:00 pm ET",
+      "away_score": 0,
+      "home_score": 0
+    },
+    {
+      "time": "05:00PM",
+      "away": "MIN",
+      "home": "SAC",
+      "game_status": "10:00 pm ET",
       "away_score": 0,
       "home_score": 0
     }

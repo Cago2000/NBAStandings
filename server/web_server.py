@@ -36,11 +36,11 @@ def start_web_server(template_file, web_port):
                     case "/":
                         body = template.encode()
                         content_type = "text/html"
-                        cache_control = "public, max-age=300"
+                        cache_control = "no-cache, no-store, must-revalidate"
                     case "/data.json":
                         body = json.dumps(data).encode()
                         content_type = "application/json"
-                        cache_control = "public, max-age=300"
+                        cache_control = "no-cache, no-store, must-revalidate"
                     case "/live_data.json":
                         body = json.dumps(live_data).encode()
                         content_type = "application/json"

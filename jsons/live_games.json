@@ -1,6 +1,6 @@
 {
   "LAC - CHA": {
-    "time": "13:00",
+    "time": "13:00PM",
     "home": "CHA",
     "away": "LAC",
     "home_score": 116,
@@ -10,7 +10,7 @@
     "clock": ""
   },
   "NYK - ORL": {
-    "time": "17:00",
+    "time": "17:00PM",
     "home": "ORL",
     "away": "NYK",
     "home_score": 0,
@@ -20,7 +20,7 @@
     "clock": ""
   },
   "ATL - NOP": {
-    "time": "19:00",
+    "time": "19:00PM",
     "home": "NOP",
     "away": "ATL",
     "home_score": 0,
@@ -30,7 +30,7 @@
     "clock": ""
   },
   "WAS - CHI": {
-    "time": "20:00",
+    "time": "20:00PM",
     "home": "CHI",
     "away": "WAS",
     "home_score": 0,
@@ -40,7 +40,7 @@
     "clock": ""
   },
   "DET - MIL": {
-    "time": "20:00",
+    "time": "20:00PM",
     "home": "MIL",
     "away": "DET",
     "home_score": 0,
@@ -50,7 +50,7 @@
     "clock": ""
   },
   "MEM - DAL": {
-    "time": "20:30",
+    "time": "20:30PM",
     "home": "DAL",
     "away": "MEM",
     "home_score": 0,
@@ -60,7 +60,7 @@
     "clock": ""
   },
   "SAC - DEN": {
-    "time": "22:00",
+    "time": "22:00PM",
     "home": "DEN",
     "away": "SAC",
     "home_score": 0,

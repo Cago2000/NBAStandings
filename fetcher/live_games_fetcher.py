@@ -1,3 +1,5 @@
+from zipfile import sizeEndCentDir
+
 from nba_api.live.nba.endpoints import scoreboard
 from datetime import datetime
 import pytz
@@ -15,7 +17,7 @@ def fetch_live_games():
         away_team = g['awayTeam']['teamTricode']
 
         game_time = datetime.fromisoformat(g['gameEt'])
-        time_str = game_time.strftime("%H:%M %Z")
+        time_str = game_time.strftime("%H:%M%p")
 
         status_text = g['gameStatusText']
         home_score = g['homeTeam']['score']
@@ -32,7 +34,7 @@ def fetch_live_games():
 
         game_key = f"{away_team} - {home_team}"
         schedule_dict[game_key] = {
-            "time": time_str.split(" ")[0],
+            "time": time_str,
             "home": home_team,
             "away": away_team,
             "home_score": home_score,
@@ -41,5 +43,4 @@ def fetch_live_games():
             "period": period,
             "clock": clock
         }
-
     return schedule_dict
