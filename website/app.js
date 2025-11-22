@@ -62,8 +62,69 @@ async function loadData() {
       });
     }
 
-    function fillMVPLadder(tableId, players) {
-      const tbody = document.getElementById(tableId).querySelector('tbody');
+    function fillSchedule(schedule) {
+      const container = document.getElementById('schedule-grid');
+      container.innerHTML = '';
+
+      for (const [date, games] of Object.entries(schedule)) {
+        const dayDiv = document.createElement('div');
+        dayDiv.classList.add('upcoming-day');
+
+        const heading = document.createElement('h2');
+        heading.textContent = date;
+        dayDiv.appendChild(heading);
+
+        const table = document.createElement('table');
+        const thead = document.createElement('thead');
+        thead.innerHTML = `
+          <tr>
+            <th>Time</th>
+            <th>Away</th>
+            <th>Home</th>
+            <th colspan="2">Score</th>
+          </tr>`;
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+
+        games.forEach(game => {
+          const tr = document.createElement('tr');
+
+          const awayScore = game.away_score !== null ? game.away_score : '';
+          const homeScore = game.home_score !== null ? game.home_score : '';
+
+          const scoreClass = game.game_status !== "Final" ? "score-pending" : "";
+
+          const awayCell = `
+            <td>
+              <img src="assets/logos/${game.away}.svg" alt="${game.away} Logo" width="30" height="30">
+              ${game.away}
+            </td>`;
+          const homeCell = `
+            <td>
+              <img src="assets/logos/${game.home}.svg" alt="${game.home} Logo" width="30" height="30">
+              ${game.home}
+            </td>`;
+
+          tr.innerHTML = `
+            <td>${game.time}</td>
+            ${awayCell}
+            ${homeCell}
+            <td class="${scoreClass}">${awayScore}</td>
+            <td class="${scoreClass}">${homeScore}</td>
+          `;
+
+          tbody.appendChild(tr);
+        });
+
+        table.appendChild(tbody);
+        dayDiv.appendChild(table);
+        container.appendChild(dayDiv);
+      }
+    }
+
+    function fillMVPLadder(players) {
+      const tbody = document.getElementById('mvp-table').querySelector('tbody');
       tbody.innerHTML = '';
       players.forEach(player => {
         const tr = document.createElement('tr');
@@ -117,11 +178,11 @@ async function loadData() {
       maxPoints += 5;
 
       fillMVPPredictions(`${user.toLowerCase()}-mvp-prediction-table`, userMVPPred, truthMVP);
-
       document.getElementById(`${user.toLowerCase()}-header`).textContent = `${user} (${totalPoints}/${maxPoints})`;
     });
 
-    fillMVPLadder('mvp-table', data.MVP_Ladder);
+    fillMVPLadder(data.MVP_Ladder);
+    fillSchedule(data.Schedule)
 
   } catch (err) {
     console.error("Failed to load JSON:", err);

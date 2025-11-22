@@ -38,3 +38,11 @@ def load_mvp_predictions(mvp_predictions_file):
     except Exception as e:
         print("Failed to load MVP predictions:", e)
         return {}
+
+def load_schedule(schedule_file):
+    try:
+        with open(schedule_file, encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print("Failed to load Schedule:", e)
+        return {}

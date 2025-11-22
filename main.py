@@ -2,7 +2,7 @@ import os
 import json
 import threading
 from server.web_server import start_web_server
-from fetcher.auto_update import auto_update_standings, auto_update_mvp_ladder
+from fetcher.auto_update import *
 from utils.logger import setup_logging
 from cloudflare.cloudflare_tunnel import CloudflareTunnel
 
@@ -19,11 +19,12 @@ if config["log_to_file"]:
 # === Init JSON Paths ===
 STANDINGS_OUTPUT_FILE = "jsons/standings.json"
 MVP_LADDER_OUTPUT_FILE = "jsons/mvp_ladder.json"
+SCHEDULE_OUTPUT_FILE = "jsons/schedule.json"
 
 # === Start auto-update threads ===
 threading.Thread(target=auto_update_standings, args=(STANDINGS_OUTPUT_FILE, 10), daemon=True).start()
-
 threading.Thread(target=auto_update_mvp_ladder, args=(MVP_LADDER_OUTPUT_FILE, 10), daemon=True).start()
+threading.Thread(target=auto_update_schedule, args=(SCHEDULE_OUTPUT_FILE, 10), daemon=True).start()
 
 # === Start Cloudflared tunnel in background ===
 tunnel = CloudflareTunnel(tunnel_name="nba-standings", debug=True)
