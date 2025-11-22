@@ -1,5 +1,3 @@
-from zipfile import sizeEndCentDir
-
 from nba_api.live.nba.endpoints import scoreboard
 from datetime import datetime
 import pytz
