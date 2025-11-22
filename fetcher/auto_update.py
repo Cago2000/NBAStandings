@@ -1,4 +1,6 @@
 import time, os, json
+
+from fetcher.live_games_fetcher import fetch_live_games
 from fetcher.mvp_ladder_fetcher import fetch_mvp_ladder
 from fetcher.standings_fetcher import fetch_standings
 from fetcher.schedule_fetcher import fetch_schedule
@@ -36,4 +38,13 @@ def auto_update_schedule(output_file, update_interval):
             save_json(data, output_file)
         else:
             print("Failed to fetch schedule, retrying later...")
+        time.sleep(update_interval)
+
+def auto_update_live_games(output_file, update_interval):
+    while True:
+        data = fetch_live_games()
+        if data:
+            save_json(data, output_file)
+        else:
+            print("Failed to fetch live games, retrying later...")
         time.sleep(update_interval)

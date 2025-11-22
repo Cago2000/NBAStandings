@@ -30,65 +30,69 @@ body {
   gap: 15px;
 }
 
-.upcoming-day {
+.schedule-day {
   background-color: rgba(34, 34, 34, 0.9);
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
-.upcoming-day h2 {
+td.live-score{
+    color: #ff3c11;
+    font-weight: bold;
+}
+
+.schedule-day h2 {
   text-align: center;
   color: #e67e22;
   margin-bottom: 10px;
 }
 
-.upcoming-day table {
+.schedule-day table {
+  table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
 }
 
-.upcoming-day table th:nth-child(1),
-.upcoming-day table td:nth-child(1) {
+.schedule-day table th:nth-child(1),
+.schedule-day table td:nth-child(1) {
   border-right: 2px solid #333;
 }
 
-.upcoming-day table th:nth-child(1),
-.upcoming-day table td:nth-child(3) {
+.schedule-day table th:nth-child(1),
+.schedule-day table td:nth-child(3) {
   border-right: 2px solid #333;
 }
 
-.upcoming-day th, .upcoming-day td {
+.schedule-day th, td.schedule-day {
   padding: 5px;
   text-align: center;
   border-bottom: 1px solid #333;
   color: #fff;
 }
 
-.upcoming-day th {
+.schedule-day th {
   background-color: #333;
   color: #fff;
 }
 
-.upcoming-day td {
+.schedule-day td {
   vertical-align: middle;
 }
 
-.upcoming-day td img {
+.schedule-day td img {
   vertical-align: middle;
   margin-right: 5px;
 }
 
-.upcoming-day table th:nth-child(1) { width: 40px; }   /* Time */
-.upcoming-day table th:nth-child(2) { width: 160px; }  /* Away */
-.upcoming-day table th:nth-child(3) { width: 160px; }  /* Home */
-.upcoming-day table th:nth-child(4) { width: 40px; }   /* Away Score */
-.upcoming-day table th:nth-child(5) { width: 40px; }   /* Home Score */
-
-.score-pending {
-  color: #ff4400;
-  font-weight: bold;
-}
+.schedule-day table th:nth-child(1),
+.schedule-day table td:nth-child(1) { width: 40px; }
+.schedule-day table th:nth-child(2),
+.schedule-day table td:nth-child(2) { width: 100px; }
+.schedule-day table th:nth-child(3),
+.schedule-day table td:nth-child(3) { width: 100px; }
+.schedule-day table th:nth-child(4),
+.schedule-day table td:nth-child(4) { width: 120px; }
 
 .main-header {
   font-size: 5em;

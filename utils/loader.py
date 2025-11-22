@@ -36,7 +36,7 @@ def load_mvp_predictions(mvp_predictions_file):
         with open(mvp_predictions_file, encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
-        print("Failed to load MVP predictions:", e)
+        print("Failed to load MVP Predictions:", e)
         return {}
 
 def load_schedule(schedule_file):
@@ -45,4 +45,13 @@ def load_schedule(schedule_file):
             return json.load(f)
     except Exception as e:
         print("Failed to load Schedule:", e)
+        return {}
+
+
+def load_live_games(live_games_file):
+    try:
+        with open(live_games_file, encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print("Failed to load Live Games:", e)
         return {}

@@ -67,8 +67,12 @@ async function loadData() {
       container.innerHTML = '';
 
       for (const [date, games] of Object.entries(schedule)) {
+        if (date.includes("Today")){
+          fillLiveGames(date, data.Live_Games, container)
+          continue;
+        }
         const dayDiv = document.createElement('div');
-        dayDiv.classList.add('upcoming-day');
+        dayDiv.classList.add('schedule-day');
 
         const heading = document.createElement('h2');
         heading.textContent = date;
@@ -77,12 +81,12 @@ async function loadData() {
         const table = document.createElement('table');
         const thead = document.createElement('thead');
         thead.innerHTML = `
-          <tr>
-            <th>Time</th>
-            <th>Away</th>
-            <th>Home</th>
-            <th colspan="2">Score</th>
-          </tr>`;
+        <tr>
+          <th>Time</th>
+          <th>Away</th>
+          <th>Home</th>
+          <th>Score</th>
+        </tr>`;
         table.appendChild(thead);
 
         const tbody = document.createElement('tbody');
@@ -92,27 +96,25 @@ async function loadData() {
 
           const awayScore = game.away_score !== null ? game.away_score : '';
           const homeScore = game.home_score !== null ? game.home_score : '';
-
-          const scoreClass = game.game_status !== "Final" ? "score-pending" : "";
+          let score = game.game_status === "Final" ? `${awayScore} - ${homeScore}`: '';
 
           const awayCell = `
-            <td>
-              <img src="assets/logos/${game.away}.svg" alt="${game.away} Logo" width="30" height="30">
-              ${game.away}
-            </td>`;
+          <td>
+            <img src="assets/logos/${game.away}.svg" alt="${game.away} Logo" width="30" height="30">
+            ${game.away}
+          </td>`;
           const homeCell = `
-            <td>
-              <img src="assets/logos/${game.home}.svg" alt="${game.home} Logo" width="30" height="30">
-              ${game.home}
-            </td>`;
+          <td>
+            <img src="assets/logos/${game.home}.svg" alt="${game.home} Logo" width="30" height="30">
+            ${game.home}
+          </td>`;
 
           tr.innerHTML = `
-            <td>${game.time}</td>
-            ${awayCell}
-            ${homeCell}
-            <td class="${scoreClass}">${awayScore}</td>
-            <td class="${scoreClass}">${homeScore}</td>
-          `;
+          <td>${game.time}</td>
+          ${awayCell}
+          ${homeCell}
+          <td>${score}</td>
+        `;
 
           tbody.appendChild(tr);
         });
@@ -122,6 +124,73 @@ async function loadData() {
         container.appendChild(dayDiv);
       }
     }
+
+    function fillLiveGames(headingTextContent, liveGames, container) {
+      const dayDiv = document.createElement('div');
+      dayDiv.classList.add('schedule-day');
+
+      const heading = document.createElement('h2');
+      heading.textContent = headingTextContent;
+      dayDiv.appendChild(heading);
+
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      thead.innerHTML = `
+        <tr>
+          <th>Time</th>
+          <th>Away</th>
+          <th>Home</th>
+          <th>Score</th>
+        </tr>`;
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+
+      for (const [key, game] of Object.entries(liveGames)) {
+        const tr = document.createElement('tr');
+
+        const awayScore = game.away_score !== null ? game.away_score : '';
+        const homeScore = game.home_score !== null ? game.home_score : '';
+
+        // Determine live/final/empty
+        let score = "";
+        let liveClass = "";
+        const hasStarted = game.game_status && !game.game_status.includes("ET") && game.game_status !== "TBD";
+
+        if (hasStarted) {
+
+          score =
+              `${awayScore} - ${homeScore} ${game.game_status}`;
+          liveClass = "live-score";
+        }
+
+        const awayCell = `
+          <td>
+            <img src="assets/logos/${game.away}.svg" alt="${game.away} Logo" width="30" height="30">
+            ${game.away}
+          </td>`;
+        const homeCell = `
+          <td>
+            <img src="assets/logos/${game.home}.svg" alt="${game.home} Logo" width="30" height="30">
+            ${game.home}
+          </td>`;
+
+        console.log(liveClass, game.game_status)
+        tr.innerHTML = `
+          <td>${game.time}</td>
+          ${awayCell}
+          ${homeCell}
+          <td class="${liveClass}">${score}</td>
+        `;
+
+        tbody.appendChild(tr);
+      }
+
+      table.appendChild(tbody);
+      dayDiv.appendChild(table);
+      container.appendChild(dayDiv);
+    }
+
 
     function fillMVPLadder(players) {
       const tbody = document.getElementById('mvp-table').querySelector('tbody');
@@ -173,7 +242,7 @@ async function loadData() {
       const userMVPPred = data.MVP_Predictions[user] || [];
       const truthMVP = data.MVP_Ladder || [];
       const topTruth = truthMVP.find(t => t.rank === 1);
-      const topPred = userMVPPred[0]; // first element is rank 1 prediction
+      const topPred = userMVPPred[0];
       if (topTruth && topPred && topTruth.player === topPred.player) totalPoints += 5;
       maxPoints += 5;
 
@@ -191,3 +260,4 @@ async function loadData() {
 
 // Load everything on page load
 loadData();
+

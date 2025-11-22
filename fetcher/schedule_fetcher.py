@@ -4,7 +4,7 @@ import pytz
 from nba_api.stats.endpoints import ScheduleLeagueV2
 
 
-def fetch_schedule(days_back=1, days_forward=3, local_tz='Europe/Berlin'):
+def fetch_schedule(days_back=1, days_forward=2, local_tz='Europe/Berlin'):
     schedule = ScheduleLeagueV2()
     games_df = schedule.season_games.get_data_frame()
 

@@ -17,6 +17,7 @@ def start_web_server(template_file, web_port):
         with cl:
             try:
                 request = cl.recv(4096).decode()
+                status = "200 OK"
                 if not request:
                     continue
                 path = request.split(" ")[1]
@@ -25,7 +26,8 @@ def start_web_server(template_file, web_port):
                     "Standings_Predictions": load_standings_predictions("jsons/standings_predictions.json"),
                     "MVP_Ladder": load_mvp_ladder("jsons/mvp_ladder.json"),
                     "MVP_Predictions": load_mvp_predictions("jsons/mvp_predictions.json"),
-                    "Schedule": load_schedule("jsons/schedule.json")
+                    "Schedule": load_schedule("jsons/schedule.json"),
+                    "Live_Games": load_live_games("jsons/live_games.json")
                 }
 
                 match path:
@@ -42,7 +44,6 @@ def start_web_server(template_file, web_port):
                             with open(file_path, "rb") as f:
                                 body = f.read()
                             content_type = mimetypes.guess_type(file_path)[0] or "application/octet-stream"
-                            status = "200 OK"
                         else:
                             body = b"404 Not Found"
                             content_type = "text/plain"
