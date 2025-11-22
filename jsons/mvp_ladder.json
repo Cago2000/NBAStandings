@@ -11,17 +11,17 @@
   },
   {
     "rank": 3,
-    "player": "Giannis Antetokounmpo",
-    "team": "Milwaukee Bucks"
-  },
-  {
-    "rank": 4,
     "player": "Luka Don\u010di\u0107",
     "team": "Los Angeles Lakers"
   },
   {
+    "rank": 4,
+    "player": "Giannis Antetokounmpo",
+    "team": "Milwaukee Bucks"
+  },
+  {
     "rank": 5,
-    "player": "Victor Wembanyama",
-    "team": "San Antonio Spurs"
+    "player": "Cade Cunningham",
+    "team": "Detroit Pistons"
   }
 ]
