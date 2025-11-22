@@ -12,7 +12,6 @@ def get_latest_mvp_ladder_url(base_url="https://www.nba.com/news/category/kia-ra
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         page.goto(base_url, wait_until="domcontentloaded", timeout=60000)
-        sleep(2)
 
         card = page.query_selector("a[href*='kia-mvp-ladder']")
         if not card:
