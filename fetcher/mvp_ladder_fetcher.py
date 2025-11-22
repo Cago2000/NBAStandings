@@ -8,34 +8,21 @@ from playwright.sync_api import sync_playwright
 
 
 def get_latest_mvp_ladder_url(base_url="https://www.nba.com/news/category/kia-race-to-the-mvp-ladder", weeks_back=2):
-    today = datetime.now(timezone.utc).date()
-    cutoff_date = today - timedelta(weeks=weeks_back)
-
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         page.goto(base_url, wait_until="domcontentloaded", timeout=60000)
         sleep(2)
-        article = page.query_selector("article") or page.query_selector("main") or page.query_selector("div.article__content")
-        if not article:
+
+        card = page.query_selector("a[href*='kia-mvp-ladder']")
+        if not card:
             browser.close()
-            raise ValueError("No article or main content element found on page")
-        text = article.inner_text()
+            raise ValueError("Could not find MVP Ladder article link")
+
+        href = card.get_attribute("href")
         browser.close()
-    dates = re.findall(
-        r"(?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}",
-        text
-    )
-    if not dates:
-        raise ValueError("No dates found in page content")
-    date_objs = [datetime.strptime(d, "%B %d, %Y").date() for d in dates]
-    recent_dates = [d for d in date_objs if cutoff_date <= d <= today]
-    if not recent_dates:
-        raise ValueError(f"No MVP ladder dates found in the last {weeks_back} weeks")
-    latest_date = max(recent_dates)
-    url_date = latest_date - timedelta(days=1)
-    url = f"https://www.nba.com/news/kia-mvp-ladder-{url_date.strftime('%b-%d-%Y').lower()}"
-    return url
+
+    return "https://www.nba.com" + href
 
 def fetch_mvp_ladder():
     url = get_latest_mvp_ladder_url()
