@@ -86,7 +86,7 @@ td.live-score{
 }
 
 .schedule-day table th:nth-child(1),
-.schedule-day table td:nth-child(1) { width: 60px; }
+.schedule-day table td:nth-child(1) { width: 80px; }
 .schedule-day table th:nth-child(2),
 .schedule-day table td:nth-child(2) { width: 100px; }
 .schedule-day table th:nth-child(3),
