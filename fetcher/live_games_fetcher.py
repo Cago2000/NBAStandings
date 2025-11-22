@@ -2,12 +2,11 @@ from nba_api.live.nba.endpoints import scoreboard
 from datetime import datetime
 import pytz
 
-def fetch_live_games(local_tz='Europe/Berlin'):
+def fetch_live_games():
     # Get today’s live scoreboard
     sb = scoreboard.ScoreBoard()
     games = sb.games.get_dict()  # list of games
 
-    local_zone = pytz.timezone(local_tz)
     schedule_dict = {}
 
     for g in games:
@@ -15,10 +14,8 @@ def fetch_live_games(local_tz='Europe/Berlin'):
         home_team = g['homeTeam']['teamTricode']
         away_team = g['awayTeam']['teamTricode']
 
-        # Convert game start time to local timezone
-        game_time_utc = datetime.fromisoformat(g['gameEt'].replace("Z", "+00:00"))
-        game_time_local = game_time_utc.astimezone(local_zone)
-        time_str = game_time_local.strftime("%H:%M %Z")
+        game_time = datetime.fromisoformat(g['gameEt'])
+        time_str = game_time.strftime("%H:%M %Z")
 
         status_text = g['gameStatusText']
         home_score = g['homeTeam']['score']

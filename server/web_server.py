@@ -27,16 +27,24 @@ def start_web_server(template_file, web_port):
                     "MVP_Ladder": load_mvp_ladder("jsons/mvp_ladder.json"),
                     "MVP_Predictions": load_mvp_predictions("jsons/mvp_predictions.json"),
                     "Schedule": load_schedule("jsons/schedule.json"),
+                }
+                live_data = {
                     "Live_Games": load_live_games("jsons/live_games.json")
                 }
-
+                cache_control = ""
                 match path:
                     case "/":
                         body = template.encode()
                         content_type = "text/html"
+                        cache_control = "public, max-age=300"
                     case "/data.json":
                         body = json.dumps(data).encode()
                         content_type = "application/json"
+                        cache_control = "public, max-age=300"
+                    case "/live_data.json":
+                        body = json.dumps(live_data).encode()
+                        content_type = "application/json"
+                        cache_control = "no-cache, no-store, must-revalidate"
                     case _:
                         fs_path = path.lstrip("/")
                         file_path = os.path.join("website", fs_path)
@@ -51,6 +59,7 @@ def start_web_server(template_file, web_port):
 
                 headers = (
                     f"HTTP/1.1 {status}\r\n"
+                    f"Cache-Control: {cache_control}\r\n"
                     f"Content-Type: {content_type}\r\n"
                     f"Content-Length: {len(body)}\r\n"
                     f"Connection: close\r\n\r\n"

@@ -1,7 +1,10 @@
 async function loadData() {
   try {
-    const res = await fetch('data.json');
+    let res = await fetch('data.json');
     const data = await res.json();
+
+    res = await fetch('live_data.json');
+    const live_data = await res.json();
 
     const users = ["Can", "Marlon", "Ole"];
     const conferences = ["East", "West"];
@@ -62,13 +65,13 @@ async function loadData() {
       });
     }
 
-    function fillSchedule(schedule) {
+    function fillSchedule(schedule, live_schedule) {
       const container = document.getElementById('schedule-grid');
       container.innerHTML = '';
 
       for (const [date, games] of Object.entries(schedule)) {
         if (date.includes("Today")){
-          fillLiveGames(date, data.Live_Games, container)
+          fillLiveGames(date, live_schedule, container)
           continue;
         }
         const dayDiv = document.createElement('div');
@@ -175,7 +178,6 @@ async function loadData() {
             ${game.home}
           </td>`;
 
-        console.log(liveClass, game.game_status)
         tr.innerHTML = `
           <td>${game.time}</td>
           ${awayCell}
@@ -251,10 +253,10 @@ async function loadData() {
     });
 
     fillMVPLadder(data.MVP_Ladder);
-    fillSchedule(data.Schedule)
+    fillSchedule(data.Schedule, live_data.Live_Games)
 
   } catch (err) {
-    console.error("Failed to load JSON:", err);
+    console.error(err);
   }
 }
 

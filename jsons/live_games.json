@@ -1,16 +1,16 @@
 {
   "LAC - CHA": {
-    "time": "19:00",
+    "time": "13:00",
     "home": "CHA",
     "away": "LAC",
-    "home_score": 89,
-    "away_score": 108,
-    "game_status": "Q4 9:11",
+    "home_score": 116,
+    "away_score": 131,
+    "game_status": "Final",
     "period": 4,
-    "clock": "PT09M11.00S"
+    "clock": ""
   },
   "NYK - ORL": {
-    "time": "18:00",
+    "time": "17:00",
     "home": "ORL",
     "away": "NYK",
     "home_score": 0,
@@ -20,7 +20,7 @@
     "clock": ""
   },
   "ATL - NOP": {
-    "time": "20:00",
+    "time": "19:00",
     "home": "NOP",
     "away": "ATL",
     "home_score": 0,
@@ -30,7 +30,7 @@
     "clock": ""
   },
   "WAS - CHI": {
-    "time": "21:00",
+    "time": "20:00",
     "home": "CHI",
     "away": "WAS",
     "home_score": 0,
@@ -40,7 +40,7 @@
     "clock": ""
   },
   "DET - MIL": {
-    "time": "21:00",
+    "time": "20:00",
     "home": "MIL",
     "away": "DET",
     "home_score": 0,
@@ -50,7 +50,7 @@
     "clock": ""
   },
   "MEM - DAL": {
-    "time": "21:30",
+    "time": "20:30",
     "home": "DAL",
     "away": "MEM",
     "home_score": 0,
@@ -60,7 +60,7 @@
     "clock": ""
   },
   "SAC - DEN": {
-    "time": "23:00",
+    "time": "22:00",
     "home": "DEN",
     "away": "SAC",
     "home_score": 0,
