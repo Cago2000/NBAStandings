@@ -1,0 +1,36 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.standings {
+  background-color: var(--bg-container);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.standings h2 {
+  text-align: center;
+  color: #1abc9c;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #222;
+}
+
+th, td { padding: 5px; text-align: center; border-bottom: 1px solid #333; }
+th { background-color: #333; color: #fff; }
+
+td.win { color: var(--win-color); font-weight: bold; }
+td.loss { color: var(--loss-color); font-weight: bold; }
+
+tr.mvp_match, tr.match { background-color: var(--win-color); color: #000; font-weight: bold; }
+tr.almost-match { background-color: var(--almost-match-color); color: #000; font-weight: bold; }
+
+tr.playoff_seed { background-color: var(--playoff-color); color: #fff; }
+tr.playin_seed { background-color: var(--playin-color); color: #fff; }

@@ -3,103 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <title>NBA Standings vs Predictions</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="./css/base.css">
+<link rel="stylesheet" href="./css/schedule.css">
+<link rel="stylesheet" href="./css/standings.css">
+<link rel="stylesheet" href="./css/colors.css">
 </head>
 <body>
 
-<div class="header-container">
-    <h1 class="main-header">
-      NBA Standings vs Predictions
-    </h1>
-</div>
-
-<div class="schedule-container">
-  <div class="schedule-grid" id="schedule-grid">Schedule</div>
-</div>
-
-<div class="score-row">
-  <div>Truth</div>
-  <div id="can-header">Can</div>
-  <div id="marlon-header">Marlon</div>
-  <div id="ole-header">Ole</div>
-</div>
-
-<div class="grid">
-  <!-- WEST ROW -->
-  <div class="standings">
-    <h2>West</h2>
-    <table id="truth-west-table">
-      <thead><tr><th>Seed</th><th>Team</th><th>W</th><th>L</th><th>GB</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-  <div class="standings">
-    <h2>West</h2>
-    <table id="can-west-table"><thead><tr><th>Seed</th><th>Team</th></tr></thead><tbody></tbody></table>
-  </div>
-  <div class="standings">
-    <h2>West</h2>
-    <table id="marlon-west-table"><thead><tr><th>Seed</th><th>Team</th></tr></thead><tbody></tbody></table>
-  </div>
-  <div class="standings">
-    <h2>West</h2>
-    <table id="ole-west-table"><thead><tr><th>Seed</th><th>Team</th></tr></thead><tbody></tbody></table>
-  </div>
-
-  <!-- EAST ROW -->
-  <div class="standings">
-    <h2>East</h2>
-    <table id="truth-east-table">
-      <thead><tr><th>Seed</th><th>Team</th><th>W</th><th>L</th><th>GB</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-  <div class="standings">
-    <h2>East</h2>
-    <table id="can-east-table"><thead><tr><th>Seed</th><th>Team</th></tr></thead><tbody></tbody></table>
-  </div>
-  <div class="standings">
-    <h2>East</h2>
-    <table id="marlon-east-table"><thead><tr><th>Seed</th><th>Team</th></tr></thead><tbody></tbody></table>
-  </div>
-  <div class="standings">
-    <h2>East</h2>
-    <table id="ole-east-table"><thead><tr><th>Seed</th><th>Team</th></tr></thead><tbody></tbody></table>
-  </div>
-
-  <!-- MVP Ladder -->
-  <div class="standings">
-    <h2>MVP Ladder</h2>
-    <table id="mvp-table">
-      <thead><tr><th>Rank</th><th>Player</th><th>Team</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-
-  <!-- MVP Predictions -->
-  <div class="standings">
-    <h2>Can MVP Prediction</h2>
-    <table id="can-mvp-prediction-table">
-      <thead><tr><th>Player</th><th>Team</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-  <div class="standings">
-    <h2>Marlon MVP Prediction</h2>
-    <table id="marlon-mvp-prediction-table">
-      <thead><tr><th>Player</th><th>Team</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-  <div class="standings">
-    <h2>Ole MVP Prediction</h2>
-    <table id="ole-mvp-prediction-table">
-      <thead><tr><th>Player</th><th>Team</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-</div>
+<div id="header-placeholder"></div>
+<div id="schedule-placeholder"></div>
+<div id="standings-placeholder"></div>
 
 <script type="module" src="app.js"></script>
+<script type="module">
+  // Load partials dynamically
+  async function loadPartial(id, path) {
+    const res = await fetch(path);
+    const html = await res.text();
+    document.getElementById(id).innerHTML = html;
+  }
+
+  loadPartial('header-placeholder', 'html/header.html');
+  loadPartial('schedule-placeholder', 'html/schedule.html');
+  loadPartial('standings-placeholder', 'html/standings.html');
+</script>
+
 </body>
 </html>

@@ -9,21 +9,28 @@ export function sortTruthTeams(teams) {
 }
 
 export function createGameRow(game, isLive = false) {
-  const tr = document.createElement('tr');
-  const awayScore = game.away_score ?? '';
-  const homeScore = game.home_score ?? '';
-  let score = '';
-  let liveClass = '';
+    const tr = document.createElement('tr');
+    const awayScore = game.away_score ?? '';
+    const homeScore = game.home_score ?? '';
+    let score = '';
+    let gameStatusClass = '';
 
-  if (isLive) {
-    const hasStarted = game.game_status && !game.game_status.includes("ET") && game.game_status !== "TBD";
-    if (hasStarted) {
-      score = `${awayScore} - ${homeScore} ${game.game_status}`;
-      liveClass = 'live-score';
+    if (game.game_status === "Final") {
+      // Finished game
+      score = `${awayScore} - ${homeScore}`;
+      gameStatusClass = 'game-over-score';
+    } else {
+      const hasStarted = game.game_status && !game.game_status.includes("ET") && game.game_status !== "TBD";
+      if (hasStarted) {
+        // Live game
+        score = `${awayScore} - ${homeScore}<br>${game.game_status}`;
+        gameStatusClass = 'live-score';
+      } else {
+        // Not started
+        score = game.time; // or empty
+        gameStatusClass = '';
+      }
     }
-  } else if (game.game_status === "Final") {
-    score = `${awayScore} - ${homeScore}`;
-  }
 
   tr.innerHTML = `
     <td>${game.time}</td>
@@ -35,7 +42,7 @@ export function createGameRow(game, isLive = false) {
       <img src="assets/logos/${game.home}.svg" alt="${game.home} Logo" width="30" height="30">
       ${game.home}
     </td>
-    <td class="${liveClass}">${score}</td>
+    <td class="${gameStatusClass}">${score}</td>
   `;
   return tr;
 }

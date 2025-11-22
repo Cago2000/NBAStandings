@@ -1,4 +1,14 @@
 {
+  "NYK - ORL": {
+    "time": "17:00PM",
+    "home": "ORL",
+    "away": "NYK",
+    "home_score": 23,
+    "away_score": 23,
+    "game_status": "Q1 2:29",
+    "period": 1,
+    "clock": "PT02M29.00S"
+  },
   "LAC - CHA": {
     "time": "13:00PM",
     "home": "CHA",
@@ -7,16 +17,6 @@
     "away_score": 131,
     "game_status": "Final",
     "period": 4,
-    "clock": ""
-  },
-  "NYK - ORL": {
-    "time": "17:00PM",
-    "home": "ORL",
-    "away": "NYK",
-    "home_score": 0,
-    "away_score": 0,
-    "game_status": "5:00 pm ET",
-    "period": 0,
     "clock": ""
   },
   "ATL - NOP": {
