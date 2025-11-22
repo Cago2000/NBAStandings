@@ -27,7 +27,7 @@ export function createGameRow(game, isLive = false) {
         gameStatusClass = 'live-score';
       } else {
         // Not started
-        score = game.time; // or empty
+        score = "";
         gameStatusClass = '';
       }
     }
