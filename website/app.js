@@ -16,17 +16,14 @@ async function init() {
     const resLive = await fetch('live_data.json');
     live_data = await resLive.json();
 
-    // Always render full schedule
     fillSchedule(data.Schedule);
 
-    // Process standings
     const sortedTruth = {};
     conferences.forEach(conf => {
       sortedTruth[conf] = sortTruthTeams(data.Standings[conf]);
       fillStandings(`truth-${conf.toLowerCase()}-table`, sortedTruth[conf], true);
     });
 
-    // Process users
     users.forEach(user => {
       let totalPoints = 0;
       let maxPoints = 0;
@@ -57,7 +54,6 @@ async function init() {
 
     fillMVPLadder(data.MVP_Ladder);
 
-    // Live updates: only update scores
     setInterval(async () => {
       try {
         const res = await fetch('live_data.json');
@@ -66,7 +62,7 @@ async function init() {
       } catch (err) {
         console.error(err);
       }
-    }, 1000); // updated to 1s for practicality
+    }, 1000);
 
   } catch (err) {
     console.error(err);

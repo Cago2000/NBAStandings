@@ -47,6 +47,13 @@ def load_schedule(schedule_file):
         print("Failed to load Schedule:", e)
         return {}
 
+def load_boxscores(boxscores_file):
+    try:
+        with open(boxscores_file, encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print("Failed to load Boxscores:", e)
+        return {}
 
 def load_live_games(live_games_file):
     try:
