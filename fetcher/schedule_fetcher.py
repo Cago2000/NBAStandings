@@ -39,10 +39,14 @@ def fetch_schedule(days_back=1, days_forward=2):
             game_time_germany = row['gameDateTimeUTC'].tz_convert(germany)
             time_germany_str = game_time_germany.strftime('%H:%M')
             game_id = row['gameId']
-            # Compute day_overlap_tag using one-liner
             game_time_est = row['gameDateTimeUTC'].tz_convert(eastern)
-            game_time_utc = row['gameDateTimeUTC']
-            day_overlap_tag = day_tags[(game_time_est.weekday() + 1) % 7] if game_time_est.date() != game_time_utc.date() else ""
+
+            germany_date = game_time_germany.date()
+            est_date = game_time_est.date()
+            if germany_date != est_date:
+                day_overlap_tag = day_tags[germany_date.weekday()]
+            else:
+                day_overlap_tag = ""
 
             games_list.append({
                 "game_id": game_id,
