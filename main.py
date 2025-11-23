@@ -1,5 +1,3 @@
-import os
-import json
 import threading
 from server.web_server import start_web_server
 from fetcher.auto_update import *
