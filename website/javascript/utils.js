@@ -9,7 +9,7 @@ export function sortTruthTeams(teams) {
 
 export function createGameRow(game) {
   const tr = document.createElement('tr');
-  tr.dataset.gameId = game.id || `${game.away}-${game.home}-${game.time}`;
+  tr.dataset.gameId = game.game_id;
 
   let gameStatusClass = '';
   if (game.game_status === "Final") gameStatusClass = 'game-over-score';

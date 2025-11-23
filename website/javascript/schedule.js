@@ -1,6 +1,6 @@
 import { createGameRow, getScoreHTML } from './utils.js';
 
-let gameRowsMap = {}; // key: game_id → row element
+let gameRowsMap = {};
 
 // Render full schedule from data.Schedule
 export function fillSchedule(scheduleData) {
@@ -40,10 +40,8 @@ export function appendScheduleDay(container, headingText, games) {
   const tbody = document.createElement('tbody');
 
   Object.values(games).forEach(game => {
-    const gameId = `${game.away}-${game.home}-${game.time}`;
-
     // Use Schedule data to populate the row initially
-    const row = createGameRow({ ...game, id: gameId });
+    const row = createGameRow(game);
 
     // Add CSS class for score cell depending on game status
     const scoreCell = row.querySelector('td.score-cell');
@@ -56,7 +54,7 @@ export function appendScheduleDay(container, headingText, games) {
     tbody.appendChild(row);
 
     // Store reference for live updates
-    gameRowsMap[gameId] = row;
+    gameRowsMap[game.game_id] = row;
   });
 
   table.appendChild(tbody);
@@ -69,8 +67,7 @@ export function updateLiveGames(liveGames) {
   if (!liveGames) return;
 
   liveGames.forEach(game => {
-    const gameId = `${game.away}-${game.home}-${game.time}`;
-    const row = gameRowsMap[gameId];
+    const row = gameRowsMap[game.game_id];
 
     if (row) {
       const scoreCell = row.querySelector('td.score-cell');
@@ -84,7 +81,7 @@ export function updateLiveGames(liveGames) {
         else if (game.game_status && !game.game_status.includes('ET')) scoreCell.classList.add('live-score');
       }
     } else {
-      console.warn('Live game not found in schedule:', gameId);
+      console.warn('Live game not found in schedule:', game.game_id);
     }
   });
 }

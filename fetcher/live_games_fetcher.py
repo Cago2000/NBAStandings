@@ -24,6 +24,7 @@ def fetch_live_games():
         game_time_germany = game_time_utc.astimezone(germany)
         time_str = game_time_germany.strftime("%H:%M")
 
+        game_id = g['gameId']
         status_text = g['gameStatusText']
         home_score = g['homeTeam']['score']
         away_score = g['awayTeam']['score']
@@ -36,6 +37,7 @@ def fetch_live_games():
         time_with_tag = time_str + day_overlap_tag
 
         temp_games.append({
+            "game_id": game_id,
             "time": time_with_tag,
             "home": home_team,
             "away": away_team,
@@ -47,14 +49,10 @@ def fetch_live_games():
 
     temp_games.sort(key=lambda x: x['_utc'])
 
-    schedule_json = {}
+    live_games_list = []
     for game in temp_games:
-        game_date = game['_utc'].date()
-        day_name = game_date.strftime("%A, %d %b %Y")
-        if day_name not in schedule_json:
-            schedule_json[day_name] = []
-
-        schedule_json[day_name].append({
+        live_games_list.append({
+            "game_id": game["game_id"],
             "time": game["time"],
             "home": game["home"],
             "away": game["away"],
@@ -63,4 +61,4 @@ def fetch_live_games():
             "game_status": game["game_status"]
         })
 
-    return schedule_json
+    return live_games_list
