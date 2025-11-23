@@ -1,24 +1,26 @@
-// schedule.js
-import { getScoreHTML, createGameRow } from './utils.js';
+import { createGameRow, getScoreHTML } from './utils.js';
 
-let liveTableBody; // private variable inside this module
+let gameRowsMap = {}; // key: game_id → row element
 
-export function fillSchedule(scheduleData, liveGames) {
+// Render full schedule from data.Schedule
+export function fillSchedule(scheduleData) {
   const container = document.getElementById('schedule-grid');
   container.innerHTML = '';
 
+  // Add wrapper class for CSS
+  container.classList.add('schedule-container', 'schedule-grid');
+
+  gameRowsMap = {}; // reset map
+
   for (const [date, games] of Object.entries(scheduleData)) {
-    if (date.includes("Today")) {
-      appendScheduleDay(container, date, liveGames, true);
-    } else {
-      appendScheduleDay(container, date, games, false);
-    }
+    appendScheduleDay(container, date, games);
   }
 }
 
-export function appendScheduleDay(container, headingText, games, isLive = false) {
+// Append a single day
+export function appendScheduleDay(container, headingText, games) {
   const dayDiv = document.createElement('div');
-  dayDiv.classList.add('schedule-day');
+  dayDiv.classList.add('schedule-day'); // CSS background, padding, shadow
 
   const heading = document.createElement('h2');
   heading.textContent = headingText;
@@ -35,48 +37,54 @@ export function appendScheduleDay(container, headingText, games, isLive = false)
       </tr>
     </thead>
   `;
-
   const tbody = document.createElement('tbody');
 
-  if (games && Object.keys(games).length > 0) {
-    Object.values(games).forEach(game => {
-      // Generate a unique ID for each game row
-      const gameId = `${game.away}-${game.home}-${game.time}`;
-      const row = createGameRow({ ...game, id: gameId }, isLive);
-      tbody.appendChild(row);
-    });
-  } else if (isLive) {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td colspan="4" style="text-align:center;">No live games currently</td>`;
-    tbody.appendChild(tr);
-  }
+  Object.values(games).forEach(game => {
+    const gameId = `${game.away}-${game.home}-${game.time}`;
 
-  if (isLive) liveTableBody = tbody; // store reference for updates
+    // Use Schedule data to populate the row initially
+    const row = createGameRow({ ...game, id: gameId });
+
+    // Add CSS class for score cell depending on game status
+    const scoreCell = row.querySelector('td.score-cell');
+    if (scoreCell) {
+      if (game.game_status === 'Final') scoreCell.classList.add('game-over-score');
+      else if (game.game_status && !game.game_status.includes('ET')) scoreCell.classList.add('live-score');
+      // games not started (ET) keep default styling
+    }
+
+    tbody.appendChild(row);
+
+    // Store reference for live updates
+    gameRowsMap[gameId] = row;
+  });
 
   table.appendChild(tbody);
   dayDiv.appendChild(table);
   container.appendChild(dayDiv);
-
-  return tbody; // return tbody so it can be reused or updated later
 }
 
+// Update only scores for live games
+export function updateLiveGames(liveGames) {
+  if (!liveGames) return;
 
-export function updateLiveGames(newLiveGames) {
-  if (!liveTableBody) return;
-
-  newLiveGames.forEach(game => {
+  liveGames.forEach(game => {
     const gameId = `${game.away}-${game.home}-${game.time}`;
-    const row = liveTableBody.querySelector(`tr[data-game-id="${gameId}"]`);
+    const row = gameRowsMap[gameId];
 
     if (row) {
       const scoreCell = row.querySelector('td.score-cell');
       if (scoreCell) {
-        scoreCell.innerHTML = getScoreHTML(game); // now bold + live status updates
+        // Overwrite Schedule score with live score if the game is actually live
+        scoreCell.innerHTML = getScoreHTML(game);
+
+        // Update CSS classes dynamically
+        scoreCell.classList.remove('game-over-score', 'live-score');
+        if (game.game_status === 'Final') scoreCell.classList.add('game-over-score');
+        else if (game.game_status && !game.game_status.includes('ET')) scoreCell.classList.add('live-score');
       }
     } else {
-      liveTableBody.appendChild(createGameRow(game, true));
+      console.warn('Live game not found in schedule:', gameId);
     }
   });
 }
-
-

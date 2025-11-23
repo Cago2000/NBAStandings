@@ -1,4 +1,3 @@
-// standings.js
 export function fillStandings(tableId, teams, includeWL = false) {
   const tbody = document.getElementById(tableId).querySelector('tbody');
   tbody.innerHTML = '';

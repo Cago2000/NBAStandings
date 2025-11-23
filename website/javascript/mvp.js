@@ -1,17 +1,16 @@
-// mvp.js
 export function fillMVPLadder(players) {
   const tbody = document.getElementById('mvp-table').querySelector('tbody');
   tbody.innerHTML = '';
   players.forEach(player => {
-      const tr = document.createElement('tr');
-      switch (player.rank) {
-        case 1: tr.classList.add('mvp-first'); break;
-        case 2: tr.classList.add('mvp-second'); break;
-        case 3: tr.classList.add('mvp-third'); break;
-        default: break;
-      }
-      tr.innerHTML = `<td>${player.rank}</td><td>${player.player}</td><td>${player.team}</td>`;
-      tbody.appendChild(tr);
+    const tr = document.createElement('tr');
+    switch (player.rank) {
+      case 1: tr.classList.add('mvp-first'); break;
+      case 2: tr.classList.add('mvp-second'); break;
+      case 3: tr.classList.add('mvp-third'); break;
+      default: break;
+    }
+    tr.innerHTML = `<td>${player.rank}</td><td>${player.player}</td><td>${player.team}</td>`;
+    tbody.appendChild(tr);
   });
 }
 

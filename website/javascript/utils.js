@@ -1,4 +1,3 @@
-// utils.js
 export function sortTruthTeams(teams) {
   return teams.slice().sort((a, b) => {
     const winPctA = a.wins / (a.wins + a.losses);
@@ -8,7 +7,7 @@ export function sortTruthTeams(teams) {
   });
 }
 
-export function createGameRow(game, isLive = false) {
+export function createGameRow(game) {
   const tr = document.createElement('tr');
   tr.dataset.gameId = game.id || `${game.away}-${game.home}-${game.time}`;
 
@@ -38,7 +37,7 @@ export function getScoreHTML(game) {
   const awayScore = game.away_score ?? 0;
   const homeScore = game.home_score ?? 0;
 
-  if (awayScore === 0 && homeScore === 0 && game.game_status && game.game_status.includes("ET")) {
+  if (awayScore === 0 && homeScore === 0 && game.game_status.includes("ET")) {
     return '';
   }
 

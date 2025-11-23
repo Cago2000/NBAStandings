@@ -1,4 +1,3 @@
-// app.js
 import { fillSchedule, updateLiveGames } from './javascript/schedule.js';
 import { fillStandings, fillPredictionsStandings } from './javascript/standings.js';
 import { fillMVPLadder, fillMVPPredictions } from './javascript/mvp.js';
@@ -9,7 +8,6 @@ const conferences = ["East", "West"];
 let data;
 let live_data;
 
-
 async function init() {
   try {
     const resData = await fetch('data.json');
@@ -18,14 +16,17 @@ async function init() {
     const resLive = await fetch('live_data.json');
     live_data = await resLive.json();
 
-    fillSchedule(data.Schedule, live_data.Live_Games);
+    // Always render full schedule
+    fillSchedule(data.Schedule);
 
+    // Process standings
     const sortedTruth = {};
     conferences.forEach(conf => {
       sortedTruth[conf] = sortTruthTeams(data.Standings[conf]);
       fillStandings(`truth-${conf.toLowerCase()}-table`, sortedTruth[conf], true);
     });
 
+    // Process users
     users.forEach(user => {
       let totalPoints = 0;
       let maxPoints = 0;
@@ -56,15 +57,16 @@ async function init() {
 
     fillMVPLadder(data.MVP_Ladder);
 
+    // Live updates: only update scores
     setInterval(async () => {
       try {
-        const res = await fetch(`live_data.json`); // prevent caching
+        const res = await fetch('live_data.json');
         const live_data_json = await res.json();
         updateLiveGames(live_data_json.Live_Games);
       } catch (err) {
         console.error(err);
       }
-    }, 100);
+    }, 1000); // updated to 1s for practicality
 
   } catch (err) {
     console.error(err);
