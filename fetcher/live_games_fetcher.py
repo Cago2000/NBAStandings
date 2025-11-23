@@ -15,7 +15,13 @@ def fetch_live_games():
         home_team = g['homeTeam']['teamTricode']
         away_team = g['awayTeam']['teamTricode']
 
+        game_time_est = datetime.fromisoformat(g['gameEt'].replace("Z", "+00:00"))
         game_time_utc = datetime.fromisoformat(g['gameTimeUTC'].replace("Z", "+00:00"))
+
+        day_tags = {
+            0: " (Mo)", 1: " (Tu)", 2: " (We)", 3: " (Th)", 4: " (Fr)", 5: " (Sa)", 6: " (So)"
+        }
+        day_overlap_tag = day_tags[game_time_est.weekday()+1] if game_time_est.date() != game_time_utc.date() else ""
 
         game_time_germany = game_time_utc.astimezone(germany)
         time_str = game_time_germany.strftime("%H:%M")
@@ -33,7 +39,7 @@ def fetch_live_games():
             clock = ""
 
         games_list.append({
-            "time": time_str,
+            "time": time_str + day_overlap_tag,
             "home": home_team,
             "away": away_team,
             "home_score": home_score,
@@ -47,3 +53,6 @@ def fetch_live_games():
     games_list.sort(key=lambda x: datetime.fromisoformat(x['utc_time']))
 
     return games_list
+
+if __name__ == "__main__":
+    fetch_live_games()
