@@ -40,7 +40,10 @@ export function appendScheduleDay(container, headingText, games, isLive = false)
 
   if (games && Object.keys(games).length > 0) {
     Object.values(games).forEach(game => {
-      tbody.appendChild(createGameRow(game, isLive));
+      // Generate a unique ID for each game row
+      const gameId = `${game.away}-${game.home}-${game.time}`;
+      const row = createGameRow({ ...game, id: gameId }, isLive);
+      tbody.appendChild(row);
     });
   } else if (isLive) {
     const tr = document.createElement('tr');
@@ -48,25 +51,48 @@ export function appendScheduleDay(container, headingText, games, isLive = false)
     tbody.appendChild(tr);
   }
 
-  if (isLive) liveTableBody = tbody;
+  if (isLive) liveTableBody = tbody; // store reference for updates
 
   table.appendChild(tbody);
   dayDiv.appendChild(table);
   container.appendChild(dayDiv);
+
+  return tbody; // return tbody so it can be reused or updated later
 }
+
 
 export function updateLiveGames(newLiveGames) {
-  if (!liveTableBody) return;
-
-  liveTableBody.innerHTML = '';
-
-  if (newLiveGames && Object.keys(newLiveGames).length > 0) {
-    Object.values(newLiveGames).forEach(game => {
-      liveTableBody.appendChild(createGameRow(game, true));
-    });
-  } else {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td colspan="4" style="text-align:center;">No live games currently</td>`;
-    liveTableBody.appendChild(tr);
+  if (!liveTableBody) {
+    return;
   }
+
+  newLiveGames.forEach(game => {
+    // generate a unique id if your JSON doesn’t have one
+    const gameId = game.id || `${game.away}-${game.home}-${game.time}`;
+    const row = liveTableBody.querySelector(`tr[data-game-id="${gameId}"]`);
+
+    if (row) {
+      const scoreCell = row.querySelector('.score-cell');
+      const oldContent = scoreCell.innerHTML;
+
+      let newContent = '';
+      let newClass = '';
+      if (game.game_status === "Final") {
+        newContent = `${game.away_score ?? ''} - ${game.home_score ?? ''}`;
+        newClass = 'game-over-score';
+      } else if (game.game_status && !game.game_status.includes("ET")) {
+        newContent = `${game.away_score ?? ''} - ${game.home_score ?? ''}<br>${game.game_status}`;
+        newClass = 'live-score';
+      }
+
+      if (oldContent !== newContent) {
+        scoreCell.innerHTML = newContent;
+        scoreCell.className = `score-cell ${newClass}`;
+      }
+    } else {
+      const newRow = createGameRow({...game, id: gameId}, true);
+      liveTableBody.appendChild(newRow);
+    }
+  });
 }
+

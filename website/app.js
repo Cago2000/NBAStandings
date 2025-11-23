@@ -58,13 +58,13 @@ async function init() {
 
     setInterval(async () => {
       try {
-        const res = await fetch('live_data.json');
-        live_data = await res.json();
-        updateLiveGames(live_data.Live_Games);
+        const res = await fetch(`live_data.json`); // prevent caching
+        const live_data_json = await res.json();
+        updateLiveGames(live_data_json.Live_Games);
       } catch (err) {
         console.error(err);
       }
-    }, 1000);
+    }, 100);
 
   } catch (err) {
     console.error(err);
