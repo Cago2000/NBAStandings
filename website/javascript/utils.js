@@ -9,33 +9,50 @@ export function sortTruthTeams(teams) {
 }
 
 export function createGameRow(game, isLive = false) {
-    const tr = document.createElement('tr');
-    tr.dataset.gameId = game.id || `${game.away}-${game.home}-${game.time}`; // unique id
+  const tr = document.createElement('tr');
+  tr.dataset.gameId = game.id || `${game.away}-${game.home}-${game.time}`;
 
-    const awayScore = game.away_score ?? '';
-    const homeScore = game.home_score ?? '';
-    let score = '';
-    let gameStatusClass = '';
+  let gameStatusClass = '';
+  if (game.game_status === "Final") gameStatusClass = 'game-over-score';
+  else if (game.game_status && !game.game_status.includes("ET")) gameStatusClass = 'live-score';
 
-    if (game.game_status === "Final") {
-      score = `${awayScore} - ${homeScore}`;
-      gameStatusClass = 'game-over-score';
-    } else if (game.game_status && !game.game_status.includes("ET")) {
-      score = `${awayScore} - ${homeScore}<br>${game.game_status}`;
-      gameStatusClass = 'live-score';
+  const score = getScoreHTML(game);
+
+  tr.innerHTML = `
+    <td>${game.time}</td>
+    <td>
+      <img src="assets/logos/${game.away}.svg" alt="${game.away} Logo" width="30" height="30">
+      ${game.away}
+    </td>
+    <td>
+      <img src="assets/logos/${game.home}.svg" alt="${game.home} Logo" width="30" height="30">
+      ${game.home}
+    </td>
+    <td class="score-cell ${gameStatusClass}">${score}</td>
+  `;
+
+  return tr;
+}
+
+export function getScoreHTML(game) {
+  const awayScore = game.away_score ?? '';
+  const homeScore = game.home_score ?? '';
+  let scoreHTML = '';
+
+  if (awayScore !== '' && homeScore !== '') {
+    if (awayScore > homeScore) {
+      scoreHTML = `<span style="font-weight:bold">${awayScore}</span> - <span>${homeScore}</span>`;
+    } else if (homeScore > awayScore) {
+      scoreHTML = `<span>${awayScore}</span> - <span style="font-weight:bold">${homeScore}</span>`;
+    } else {
+      scoreHTML = `<span>${awayScore}</span> - <span>${homeScore}</span>`;
     }
+  }
 
-    tr.innerHTML = `
-      <td>${game.time}</td>
-      <td>
-        <img src="assets/logos/${game.away}.svg" alt="${game.away} Logo" width="30" height="30">
-        ${game.away}
-      </td>
-      <td>
-        <img src="assets/logos/${game.home}.svg" alt="${game.home} Logo" width="30" height="30">
-        ${game.home}
-      </td>
-      <td class="score-cell ${gameStatusClass}">${score}</td>
-    `;
-    return tr;
+  // Append live game status if the game is running
+  if (game.game_status && !game.game_status.includes("ET") && game.game_status !== "Final") {
+    scoreHTML += `<br><span class="game-status">${game.game_status}</span>`;
+  }
+
+  return scoreHTML;
 }

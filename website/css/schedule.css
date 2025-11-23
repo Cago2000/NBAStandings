@@ -39,5 +39,4 @@ td.live-score {
 
 td.game-over-score {
   color: var(--text-light);
-  font-weight: bold;
 }

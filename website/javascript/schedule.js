@@ -1,5 +1,5 @@
 // schedule.js
-import { createGameRow } from './utils.js';
+import { getScoreHTML, createGameRow } from './utils.js';
 
 let liveTableBody; // private variable inside this module
 
@@ -62,37 +62,21 @@ export function appendScheduleDay(container, headingText, games, isLive = false)
 
 
 export function updateLiveGames(newLiveGames) {
-  if (!liveTableBody) {
-    return;
-  }
+  if (!liveTableBody) return;
 
   newLiveGames.forEach(game => {
-    // generate a unique id if your JSON doesn’t have one
-    const gameId = game.id || `${game.away}-${game.home}-${game.time}`;
+    const gameId = `${game.away}-${game.home}-${game.time}`;
     const row = liveTableBody.querySelector(`tr[data-game-id="${gameId}"]`);
 
     if (row) {
-      const scoreCell = row.querySelector('.score-cell');
-      const oldContent = scoreCell.innerHTML;
-
-      let newContent = '';
-      let newClass = '';
-      if (game.game_status === "Final") {
-        newContent = `${game.away_score ?? ''} - ${game.home_score ?? ''}`;
-        newClass = 'game-over-score';
-      } else if (game.game_status && !game.game_status.includes("ET")) {
-        newContent = `${game.away_score ?? ''} - ${game.home_score ?? ''}<br>${game.game_status}`;
-        newClass = 'live-score';
-      }
-
-      if (oldContent !== newContent) {
-        scoreCell.innerHTML = newContent;
-        scoreCell.className = `score-cell ${newClass}`;
+      const scoreCell = row.querySelector('td.score-cell');
+      if (scoreCell) {
+        scoreCell.innerHTML = getScoreHTML(game); // now bold + live status updates
       }
     } else {
-      const newRow = createGameRow({...game, id: gameId}, true);
-      liveTableBody.appendChild(newRow);
+      liveTableBody.appendChild(createGameRow(game, true));
     }
   });
 }
+
 
