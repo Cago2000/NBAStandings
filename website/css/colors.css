@@ -1,11 +1,23 @@
 :root {
   --bg-dark: #111;
   --bg-container: rgba(34, 34, 34, 0.9);
+
   --text-light: #eee;
   --highlight: #e67e22;
+
   --win-color: #00d359;
   --loss-color: #d11100;
-  --playoff-color: #0659b1;
-  --playin-color: #3516c3;
+
+  --playoff-color: #5596e3;
+  --playin-color: #7d56dd;
+
+  --mvp-first-color: gold;
+  --mvp-second-color: silver;
+  --mvp-third-color: #cd7f32;
+  --mvp-match-color: #00d359;
+
+  --match-color: #00d359;
   --almost-match-color: #f1c40f;
+
+  --conference-leader: gold;
 }

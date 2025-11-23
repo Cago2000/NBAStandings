@@ -29,8 +29,15 @@ th { background-color: #333; color: #fff; }
 td.win { color: var(--win-color); font-weight: bold; }
 td.loss { color: var(--loss-color); font-weight: bold; }
 
-tr.mvp_match, tr.match { background-color: var(--win-color); color: #000; font-weight: bold; }
+tr.mvp-match { background-color: var(--win-color); color: #000; font-weight: bold; }
+
+tr.match { background-color: var(--win-color); color: #000; font-weight: bold; }
 tr.almost-match { background-color: var(--almost-match-color); color: #000; font-weight: bold; }
 
-tr.playoff_seed { background-color: var(--playoff-color); color: #fff; }
-tr.playin_seed { background-color: var(--playin-color); color: #fff; }
+tr.mvp-first { background-color: var(--mvp-first-color); color: #000000; font-weight: bold}
+tr.mvp-second { background-color: var(--mvp-second-color); color: #000000; font-weight: bold}
+tr.mvp-third { background-color: var(--mvp-third-color); color: #000000; font-weight: bold}
+
+tr.conference-leader { background-color: var(--conference-leader); color: #000000; font-weight: bold}
+tr.playoff-seed { background-color: var(--playoff-color); color: #fff; font-weight: bold; }
+tr.playin-seed { background-color: var(--playin-color); color: #fff; font-weight: bold; }

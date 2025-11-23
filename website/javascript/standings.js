@@ -6,8 +6,9 @@ export function fillStandings(tableId, teams, includeWL = false) {
   teams.forEach((team, i) => {
     const tr = document.createElement('tr');
     const seed = includeWL ? i + 1 : team.seed;
-    if (seed >= 1 && seed <= 6) tr.classList.add('playoff_seed');
-    else if (seed >= 7 && seed <= 10) tr.classList.add('playin_seed');
+    if (seed === 1) tr.classList.add('conference-leader');
+    else if (seed >= 2 && seed <= 6) tr.classList.add('playoff-seed');
+    else if (seed >= 7 && seed <= 10) tr.classList.add('playin-seed');
 
     if (includeWL) {
       tr.innerHTML = `
