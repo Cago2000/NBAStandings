@@ -23,7 +23,7 @@ table {
   background-color: #222;
 }
 
-th, td { padding: 5px; text-align: center; border-bottom: 1px solid #333; }
+th, td { padding: 5px; text-align: center; border-bottom: 1px solid #333333; }
 th { background-color: #333; color: #fff; }
 
 td.win { color: var(--win-color); font-weight: bold; }
@@ -38,6 +38,6 @@ tr.mvp-first { background-color: var(--mvp-first-color); color: #000000; font-we
 tr.mvp-second { background-color: var(--mvp-second-color); color: #000000; font-weight: bold}
 tr.mvp-third { background-color: var(--mvp-third-color); color: #000000; font-weight: bold}
 
-tr.conference-leader { background-color: var(--conference-leader); color: #000000; font-weight: bold}
-tr.playoff-seed { background-color: var(--playoff-color); color: #fff; font-weight: bold; }
-tr.playin-seed { background-color: var(--playin-color); color: #fff; font-weight: bold; }
+tr.conference-leader { background-color: var(--conference-leader); color: #fff;}
+tr.playoff-seed { background-color: var(--playoff-color); color: #fff;}
+tr.playin-seed { background-color: var(--playin-color); color: #fff;}

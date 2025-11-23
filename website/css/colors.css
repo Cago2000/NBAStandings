@@ -8,8 +8,8 @@
   --win-color: #00d359;
   --loss-color: #d11100;
 
-  --playoff-color: #5596e3;
-  --playin-color: #7d56dd;
+  --playoff-color: #222;
+  --playin-color: #222;
 
   --mvp-first-color: gold;
   --mvp-second-color: silver;
@@ -19,5 +19,5 @@
   --match-color: #00d359;
   --almost-match-color: #f1c40f;
 
-  --conference-leader: gold;
+  --conference-leader: #222;
 }
