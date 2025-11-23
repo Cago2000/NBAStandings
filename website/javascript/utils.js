@@ -20,7 +20,7 @@ export function createGameRow(game, isLive = false) {
       score = `${awayScore} - ${homeScore}`;
       gameStatusClass = 'game-over-score';
     } else {
-      const hasStarted = game.game_status && !game.game_status.includes("ET") && game.game_status !== "TBD";
+      const hasStarted = game.game_status && !game.game_status.includes("ET");
       if (hasStarted) {
         // Live game
         score = `${awayScore} - ${homeScore}<br>${game.game_status}`;
