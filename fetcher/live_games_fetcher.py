@@ -2,20 +2,23 @@ from nba_api.live.nba.endpoints import scoreboard
 from datetime import datetime
 import pytz
 
-def fetch_live_games():
-    # Get today’s live scoreboard
-    sb = scoreboard.ScoreBoard()
-    games = sb.games.get_dict()  # list of games
 
-    schedule_dict = {}
+def fetch_live_games():
+    germany = pytz.timezone('Europe/Berlin')
+
+    sb = scoreboard.ScoreBoard()
+    games = sb.games.get_dict()
+
+    games_list = []
 
     for g in games:
-        game_id = g['gameId']
         home_team = g['homeTeam']['teamTricode']
         away_team = g['awayTeam']['teamTricode']
 
-        game_time = datetime.fromisoformat(g['gameEt'])
-        time_str = game_time.strftime("%H:%M%p")
+        game_time_utc = datetime.fromisoformat(g['gameTimeUTC'].replace("Z", "+00:00"))
+
+        game_time_germany = game_time_utc.astimezone(germany)
+        time_str = game_time_germany.strftime("%H:%M")
 
         status_text = g['gameStatusText']
         home_score = g['homeTeam']['score']
@@ -23,15 +26,13 @@ def fetch_live_games():
         period = g.get('period', 0)
         clock = g.get('gameClock', "")
 
-        # If scores are 0 and game hasn't started, set to None
         if status_text == "Not Started":
             home_score = None
             away_score = None
             period = 0
             clock = ""
 
-        game_key = f"{away_team} - {home_team}"
-        schedule_dict[game_key] = {
+        games_list.append({
             "time": time_str,
             "home": home_team,
             "away": away_team,
@@ -39,6 +40,10 @@ def fetch_live_games():
             "away_score": away_score,
             "game_status": status_text,
             "period": period,
-            "clock": clock
-        }
-    return schedule_dict
+            "clock": clock,
+            "utc_time": game_time_utc.isoformat()
+        })
+
+    games_list.sort(key=lambda x: datetime.fromisoformat(x['utc_time']))
+
+    return games_list

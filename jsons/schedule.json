@@ -1,10 +1,10 @@
 {
-  "Saturday, 22 Nov 2025": [
+  "Friday, 21 Nov 2025": [
     {
       "time": "01:00",
       "home": "CLE",
       "away": "IND",
-      "status": "Final",
+      "game_status": "Final",
       "home_score": 120,
       "away_score": 109
     },
@@ -12,7 +12,7 @@
       "time": "01:30",
       "home": "BOS",
       "away": "BKN",
-      "status": "Final",
+      "game_status": "Final",
       "home_score": 105,
       "away_score": 113
     },
@@ -20,7 +20,7 @@
       "time": "01:30",
       "home": "TOR",
       "away": "WAS",
-      "status": "Final",
+      "game_status": "Final",
       "home_score": 140,
       "away_score": 110
     },
@@ -28,7 +28,7 @@
       "time": "02:00",
       "home": "CHI",
       "away": "MIA",
-      "status": "Final",
+      "game_status": "Final",
       "home_score": 107,
       "away_score": 143
     },
@@ -36,7 +36,7 @@
       "time": "02:30",
       "home": "DAL",
       "away": "NOP",
-      "status": "Final",
+      "game_status": "Final",
       "home_score": 118,
       "away_score": 115
     },
@@ -44,7 +44,7 @@
       "time": "03:00",
       "home": "PHX",
       "away": "MIN",
-      "status": "Final",
+      "game_status": "Final",
       "home_score": 114,
       "away_score": 113
     },
@@ -52,7 +52,7 @@
       "time": "03:30",
       "home": "HOU",
       "away": "DEN",
-      "status": "Final",
+      "game_status": "Final",
       "home_score": 109,
       "away_score": 112
     },
@@ -60,7 +60,7 @@
       "time": "04:00",
       "home": "UTA",
       "away": "OKC",
-      "status": "Final",
+      "game_status": "Final",
       "home_score": 112,
       "away_score": 144
     },
@@ -68,15 +68,17 @@
       "time": "04:00",
       "home": "GSW",
       "away": "POR",
-      "status": "Final",
+      "game_status": "Final",
       "home_score": 123,
       "away_score": 127
-    },
+    }
+  ],
+  "Saturday, 22 Nov 2025 (Today)": [
     {
       "time": "19:00",
       "home": "CHA",
       "away": "LAC",
-      "status": "Final",
+      "game_status": "Final",
       "home_score": 116,
       "away_score": 131
     },
@@ -84,17 +86,15 @@
       "time": "23:00",
       "home": "ORL",
       "away": "NYK",
-      "status": "1st Qtr             ",
+      "game_status": "Halftime            ",
       "home_score": 0,
       "away_score": 0
-    }
-  ],
-  "Sunday, 23 Nov 2025 (Today)": [
+    },
     {
       "time": "01:00",
       "home": "NOP",
       "away": "ATL",
-      "status": "7:00 pm ET",
+      "game_status": "7:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -102,7 +102,7 @@
       "time": "02:00",
       "home": "CHI",
       "away": "WAS",
-      "status": "8:00 pm ET",
+      "game_status": "8:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -110,7 +110,7 @@
       "time": "02:00",
       "home": "MIL",
       "away": "DET",
-      "status": "8:00 pm ET",
+      "game_status": "8:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -118,7 +118,7 @@
       "time": "02:30",
       "home": "DAL",
       "away": "MEM",
-      "status": "8:30 pm ET",
+      "game_status": "8:30 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -126,25 +126,25 @@
       "time": "04:00",
       "home": "DEN",
       "away": "SAC",
-      "status": "10:00 pm ET",
-      "home_score": 0,
-      "away_score": 0
-    },
-    {
-      "time": "19:00",
-      "home": "PHI",
-      "away": "MIA",
-      "status": "1:00 pm ET",
+      "game_status": "10:00 pm ET",
       "home_score": 0,
       "away_score": 0
     }
   ],
-  "Monday, 24 Nov 2025": [
+  "Sunday, 23 Nov 2025": [
+    {
+      "time": "19:00",
+      "home": "PHI",
+      "away": "MIA",
+      "game_status": "1:00 pm ET",
+      "home_score": 0,
+      "away_score": 0
+    },
     {
       "time": "00:00",
       "home": "ATL",
       "away": "CHA",
-      "status": "6:00 pm ET",
+      "game_status": "6:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -152,7 +152,7 @@
       "time": "00:00",
       "home": "BOS",
       "away": "ORL",
-      "status": "6:00 pm ET",
+      "game_status": "6:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -160,7 +160,7 @@
       "time": "00:00",
       "home": "CLE",
       "away": "LAC",
-      "status": "6:00 pm ET",
+      "game_status": "6:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -168,7 +168,7 @@
       "time": "00:00",
       "home": "TOR",
       "away": "BKN",
-      "status": "6:00 pm ET",
+      "game_status": "6:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -176,7 +176,7 @@
       "time": "01:00",
       "home": "OKC",
       "away": "POR",
-      "status": "7:00 pm ET",
+      "game_status": "7:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -184,7 +184,7 @@
       "time": "02:00",
       "home": "PHX",
       "away": "SAS",
-      "status": "8:00 pm ET",
+      "game_status": "8:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -192,17 +192,17 @@
       "time": "02:00",
       "home": "UTA",
       "away": "LAL",
-      "status": "8:00 pm ET",
+      "game_status": "8:00 pm ET",
       "home_score": 0,
       "away_score": 0
     }
   ],
-  "Tuesday, 25 Nov 2025": [
+  "Monday, 24 Nov 2025": [
     {
       "time": "01:00",
       "home": "IND",
       "away": "DET",
-      "status": "7:00 pm ET",
+      "game_status": "7:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -210,7 +210,7 @@
       "time": "01:00",
       "home": "TOR",
       "away": "CLE",
-      "status": "7:00 pm ET",
+      "game_status": "7:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -218,7 +218,7 @@
       "time": "01:30",
       "home": "BKN",
       "away": "NYK",
-      "status": "7:30 pm ET",
+      "game_status": "7:30 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -226,7 +226,7 @@
       "time": "01:30",
       "home": "MIA",
       "away": "DAL",
-      "status": "7:30 pm ET",
+      "game_status": "7:30 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -234,7 +234,7 @@
       "time": "02:00",
       "home": "MEM",
       "away": "DEN",
-      "status": "8:00 pm ET",
+      "game_status": "8:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -242,7 +242,7 @@
       "time": "02:00",
       "home": "MIL",
       "away": "POR",
-      "status": "8:00 pm ET",
+      "game_status": "8:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -250,7 +250,7 @@
       "time": "02:00",
       "home": "NOP",
       "away": "CHI",
-      "status": "8:00 pm ET",
+      "game_status": "8:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -258,7 +258,7 @@
       "time": "03:30",
       "home": "PHX",
       "away": "HOU",
-      "status": "9:30 pm ET",
+      "game_status": "9:30 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -266,7 +266,7 @@
       "time": "04:00",
       "home": "GSW",
       "away": "UTA",
-      "status": "10:00 pm ET",
+      "game_status": "10:00 pm ET",
       "home_score": 0,
       "away_score": 0
     },
@@ -274,7 +274,7 @@
       "time": "04:00",
       "home": "SAC",
       "away": "MIN",
-      "status": "10:00 pm ET",
+      "game_status": "10:00 pm ET",
       "home_score": 0,
       "away_score": 0
     }
