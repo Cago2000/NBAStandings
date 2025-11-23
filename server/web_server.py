@@ -17,7 +17,6 @@ def start_web_server(template_file, web_port):
         with cl:
             try:
                 request = cl.recv(4096).decode()
-                status = "200 OK"
                 if not request:
                     continue
                 path = request.split(" ")[1]
@@ -31,7 +30,7 @@ def start_web_server(template_file, web_port):
                 live_data = {
                     "Live_Games": load_live_games("jsons/live_games.json")
                 }
-                cache_control = ""
+                status = "200 OK"
                 match path:
                     case "/":
                         body = template.encode()
@@ -52,10 +51,12 @@ def start_web_server(template_file, web_port):
                             with open(file_path, "rb") as f:
                                 body = f.read()
                             content_type = mimetypes.guess_type(file_path)[0] or "application/octet-stream"
+                            cache_control = "public, max-age=86400"
                         else:
                             body = b"404 Not Found"
                             content_type = "text/plain"
                             status = "404 Not Found"
+                            cache_control = "no-cache"
 
                 headers = (
                     f"HTTP/1.1 {status}\r\n"

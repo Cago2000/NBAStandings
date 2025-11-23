@@ -57,12 +57,21 @@ async function init() {
     setInterval(async () => {
       try {
         const res = await fetch('live_data.json');
-        const live_data_json = await res.json();
-        updateLiveGames(live_data_json.Live_Games);
+        live_data = await res.json();
+        updateLiveGames(live_data.Live_Games);
       } catch (err) {
         console.error(err);
       }
     }, 1000);
+
+    setInterval(async () => {
+      try {
+        const res = await fetch('data.json');
+        data = await res.json();
+      } catch (err) {
+        console.error(err);
+      }
+    }, 600000);
 
   } catch (err) {
     console.error(err);
