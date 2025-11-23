@@ -1,6 +1,6 @@
 import { fillSchedule, updateLiveGames } from './javascript/schedule.js';
 import { fillStandings, fillPredictionsStandings } from './javascript/standings.js';
-import { fillMVPLadder, fillMVPPredictions } from './javascript/mvp.js';
+import { fillMVPLadder, fillMVPPredictions } from './javascript/mvp_ladder.js';
 import { sortTruthTeams } from './javascript/utils.js';
 
 const users = ["Can", "Marlon", "Ole"];

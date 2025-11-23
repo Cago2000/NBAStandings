@@ -13,10 +13,10 @@
 <div id="header-placeholder"></div>
 <div id="schedule-placeholder"></div>
 <div id="standings-placeholder"></div>
+<div id="mvp-ladder-placeholder"></div>
 
 <script type="module" src="app.js"></script>
 <script type="module">
-  // Load partials dynamically
   async function loadPartial(id, path) {
     const res = await fetch(path);
     const html = await res.text();
@@ -26,6 +26,7 @@
   loadPartial('header-placeholder', 'html/header.html');
   loadPartial('schedule-placeholder', 'html/schedule.html');
   loadPartial('standings-placeholder', 'html/standings.html');
+  loadPartial('mvp-ladder-placeholder', 'html/mvp_ladder.html')
 </script>
 
 </body>
