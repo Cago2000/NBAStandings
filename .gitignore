@@ -6,3 +6,6 @@
 /dist
 /build
 /exe
+/jsons/standings.json
+/jsons/schedule.json
+/jsons/live_games.json
