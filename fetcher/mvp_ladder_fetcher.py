@@ -23,7 +23,7 @@ def get_latest_mvp_ladder_url(base_url="https://www.nba.com/news/category/kia-ra
 
 def fetch_mvp_ladder():
     url = get_latest_mvp_ladder_url()
-    if not datetime.now().strftime("%A") in ["Thursday", "Friday"]:
+    if not datetime.now().strftime("%A") in ["Thursday", "Friday", "Saturday"]:
         return None
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)

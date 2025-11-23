@@ -24,7 +24,7 @@ LIVE_GAMES_OUTPUT_FILE = "jsons/live_games.json"
 
 # === Start auto-update threads ===
 threading.Thread(target=auto_update_standings, args=(STANDINGS_OUTPUT_FILE, 60), daemon=True).start()
-#threading.Thread(target=auto_update_mvp_ladder, args=(MVP_LADDER_OUTPUT_FILE, 3600), daemon=True).start()
+threading.Thread(target=auto_update_mvp_ladder, args=(MVP_LADDER_OUTPUT_FILE, 3600), daemon=True).start()
 threading.Thread(target=auto_update_schedule, args=(SCHEDULE_OUTPUT_FILE, 60), daemon=True).start()
 threading.Thread(target=auto_update_live_games, args=(LIVE_GAMES_OUTPUT_FILE, 1), daemon=True).start()
 
