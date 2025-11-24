@@ -1,23 +1,23 @@
 :root {
-  --bg-dark: #111;
-  --bg-container: rgba(34, 34, 34, 0.9);
+  --bg-dark: #0a0a0a;
+  --bg-container: rgba(25, 25, 25, 0.95);
 
-  --text-light: #eee;
+  --text-light: #f0f0f0;
   --highlight: #e67e22;
 
   --win-color: #00d359;
-  --loss-color: #d11100;
+  --loss-color: #ff4444;
 
-  --playoff-color: #222;
-  --playin-color: #222;
+  --playoff-color: #1e4d2b;
+  --playin-color: #5c4a2a;
 
-  --mvp-first-color: gold;
-  --mvp-second-color: silver;
+  --mvp-first-color: #ffd700;
+  --mvp-second-color: #c0c0c0;
   --mvp-third-color: #cd7f32;
   --mvp-match-color: #00d359;
 
   --match-color: #00d359;
-  --almost-match-color: #f1c40f;
+  --almost-match-color: #f39c12;
 
-  --conference-leader: #222;
+  --conference-leader: #2c3e50;
 }

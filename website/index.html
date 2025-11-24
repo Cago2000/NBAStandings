@@ -10,6 +10,7 @@
 </head>
 <body>
 
+<div id="navbar-placeholder"></div>
 <div id="header-placeholder"></div>
 <div id="schedule-placeholder"></div>
 <div id="standings-placeholder"></div>
@@ -23,6 +24,7 @@
     document.getElementById(id).innerHTML = html;
   }
 
+  loadPartial('navbar-placeholder', 'html/navbar.html');
   loadPartial('header-placeholder', 'html/header.html');
   loadPartial('schedule-placeholder', 'html/schedule.html');
   loadPartial('standings-placeholder', 'html/standings.html');
