@@ -41,21 +41,18 @@ export function getScoreHTML(game) {
     return '';
   }
 
-  let scoreHTML = '';
-
-  if (awayScore !== '' && homeScore !== '') {
+  if (awayScore !== '' && homeScore !== '' && game.game_status === "Final") {
     if (awayScore > homeScore) {
-      scoreHTML = `<span style="font-weight:bold">${awayScore}</span> - <span>${homeScore}</span>`;
+      return `<span style="color: var(--win-color); font-weight: bold">${awayScore}</span> - <span style="color: var(--loss-color); font-weight: bold">${homeScore}</span>`;
     } else if (homeScore > awayScore) {
-      scoreHTML = `<span>${awayScore}</span> - <span style="font-weight:bold">${homeScore}</span>`;
+      return `<span style="color: var(--loss-color); font-weight: bold">${awayScore}</span> - <span style="color: var(--win-color); font-weight: bold">${homeScore}</span>`;
     } else {
-      scoreHTML = `<span>${awayScore}</span> - <span>${homeScore}</span>`;
+      return `<span>${awayScore}</span> - <span>${homeScore}</span>`;
     }
   }
 
-  if (game.game_status && !game.game_status.includes("ET") && game.game_status !== "Final") {
-    scoreHTML += `<br><span class="game-status">${game.game_status}</span>`;
+  if (!game.game_status.includes("ET") && game.game_status !== "Final") {
+    return `<span>${awayScore}</span> - <span>${homeScore}</span><br><span class="game-status">${game.game_status}</span>`;
   }
-
-  return scoreHTML;
+  return '';
 }
