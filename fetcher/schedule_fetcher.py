@@ -3,11 +3,11 @@ import pandas as pd
 import pytz
 from nba_api.stats.endpoints import ScheduleLeagueV2
 
-def fetch_schedule(days_back=1, days_forward=2):
+
+def fetch_schedule(days_back=1, days_with_games=4):
     schedule = ScheduleLeagueV2()
     games_df = schedule.season_games.get_data_frame()
 
-    # Convert UTC datetime
     games_df['gameDateTimeUTC'] = pd.to_datetime(games_df['gameDateTimeUTC'], utc=True)
 
     eastern = pytz.timezone("US/Eastern")
@@ -15,21 +15,25 @@ def fetch_schedule(days_back=1, days_forward=2):
     today_eastern = datetime.now(eastern).date()
 
     start_day = today_eastern - timedelta(days=days_back)
-    end_day = today_eastern + timedelta(days=days_forward)
-
     start_utc = eastern.localize(datetime.combine(start_day, time(0, 0))).astimezone(pytz.UTC)
-    end_utc = eastern.localize(datetime.combine(end_day, time(23, 59, 59))).astimezone(pytz.UTC)
 
-    window_games = games_df[
-        (games_df['gameDateTimeUTC'] >= start_utc) &
-        (games_df['gameDateTimeUTC'] <= end_utc)
-    ].copy()
+    future_games = games_df[games_df['gameDateTimeUTC'] >= start_utc].copy()
+    future_games = future_games.sort_values('gameDateTimeUTC')
 
-    # Day tags
+    unique_dates = future_games['gameDateTimeUTC'].apply(lambda x: x.astimezone(eastern).date()).unique()
+
+    available_days = len(unique_dates)
+    selected_dates = unique_dates[:min(days_with_games, available_days)]
+
+    window_games = future_games[
+        future_games['gameDateTimeUTC'].apply(lambda x: x.astimezone(eastern).date()).isin(selected_dates)
+    ]
+
     day_tags = {0: " (Mo)", 1: " (Tu)", 2: " (We)", 3: " (Th)", 4: " (Fr)", 5: " (Sa)", 6: " (So)"}
 
     grouped = {}
-    for date, group in window_games.groupby(window_games['gameDateTimeUTC'].apply(lambda x: x.astimezone(eastern).date())):
+    for date, group in window_games.groupby(
+            window_games['gameDateTimeUTC'].apply(lambda x: x.astimezone(eastern).date())):
         date_str = date.strftime('%A, %d %b %Y')
         if date == today_eastern:
             date_str += " (Today)"
