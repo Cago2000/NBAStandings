@@ -12,7 +12,7 @@ export function createGameRow(game) {
   tr.dataset.gameId = game.game_id;
 
   let gameStatusClass = '';
-  if (game.game_status === "Final") gameStatusClass = 'game-over-score';
+  if (game.game_status.includes('Final')) gameStatusClass = 'game-over-score';
   else if (game.game_status && !game.game_status.includes("ET")) gameStatusClass = 'live-score';
 
   const score = getScoreHTML(game);
@@ -41,7 +41,7 @@ export function getScoreHTML(game) {
     return '';
   }
 
-  if (awayScore !== '' && homeScore !== '' && game.game_status === "Final") {
+  if (awayScore !== '' && homeScore !== '' && game.game_status.includes('Final')) {
     if (awayScore > homeScore) {
       return `<span style="color: var(--win-color); font-weight: bold">${awayScore}</span> - <span style="color: var(--loss-color); font-weight: bold">${homeScore}</span>`;
     } else if (homeScore > awayScore) {

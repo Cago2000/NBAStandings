@@ -77,7 +77,7 @@ export function updateLiveGames(liveGames) {
 
         // Update CSS classes dynamically
         scoreCell.classList.remove('game-over-score', 'live-score');
-        if (game.game_status === 'Final') scoreCell.classList.add('game-over-score');
+        if (game.game_status.includes('Final')) scoreCell.classList.add('game-over-score');
         else if (game.game_status && !game.game_status.includes('ET')) scoreCell.classList.add('live-score');
       }
     } else {
