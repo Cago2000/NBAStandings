@@ -4,6 +4,9 @@ from fetcher.auto_update import *
 from utils.logger import setup_logging
 from cloudflare.cloudflare_tunnel import CloudflareTunnel
 
+import socket
+print("Running on:", socket.gethostname())
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 CONFIG_FILE = os.path.join(BASE_DIR, "jsons/config.json")
@@ -23,7 +26,7 @@ BOXSCORE_OUTPUT_FILE = "jsons/boxscores.json"
 
 # === Start auto-update threads ===
 threading.Thread(target=auto_update_standings, args=(STANDINGS_OUTPUT_FILE, 60), daemon=True).start()
-#threading.Thread(target=auto_update_mvp_ladder, args=(MVP_LADDER_OUTPUT_FILE, 3600), daemon=True).start()
+threading.Thread(target=auto_update_mvp_ladder, args=(MVP_LADDER_OUTPUT_FILE, 3600), daemon=True).start()
 threading.Thread(target=auto_update_schedule, args=(SCHEDULE_OUTPUT_FILE, 60), daemon=True).start()
 threading.Thread(target=auto_update_live_games, args=(LIVE_GAMES_OUTPUT_FILE, 0.5), daemon=True).start()
 
