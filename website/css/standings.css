@@ -89,19 +89,16 @@ td.loss { color: var(--loss-color); font-weight: bold; }
 tr.mvp-match {
   background-color: var(--mvp-match-color);
   color: #000;
-  font-weight: bold;
 }
 
 tr.match {
   background-color: var(--match-color);
-  color: #000;
-  font-weight: bold;
+  color: #fff;
 }
 
 tr.almost-match {
   background-color: var(--almost-match-color);
-  color: #000;
-  font-weight: bold;
+  color: #fff;
 }
 
 tr.mvp-first {
