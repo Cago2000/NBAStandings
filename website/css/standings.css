@@ -88,7 +88,7 @@ td.loss { color: var(--loss-color); font-weight: bold; }
 
 tr.mvp-match {
   background-color: var(--mvp-match-color);
-  color: #000;
+  color: #fff;
 }
 
 tr.match {
