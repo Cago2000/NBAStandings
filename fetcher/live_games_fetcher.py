@@ -2,14 +2,25 @@ from nba_api.live.nba.endpoints import scoreboard
 from datetime import datetime
 import pytz
 import json
-
+import requests
 
 def fetch_live_games():
     germany = pytz.timezone('Europe/Berlin')
 
-    sb = scoreboard.ScoreBoard()
-    games = sb.games.get_dict()
+    # --- Safe API call wrapper ---
+    try:
+        sb = scoreboard.ScoreBoard()
+        games = sb.games.get_dict()
+    except Exception as e:
+        print("⚠️ Live game fetch failed:", e)
+        return []
 
+    # --- If API responded but sent no games ---
+    if not games:
+        print("⚠️ API returned no games (empty response).")
+        return []
+
+    # --- Process games normally ---
     day_tags = {
         0: " (Mo)", 1: " (Tu)", 2: " (We)", 3: " (Th)",
         4: " (Fr)", 5: " (Sa)", 6: " (So)"
@@ -17,7 +28,6 @@ def fetch_live_games():
 
     temp_games = []
     for g in games:
-
         home_team = g['homeTeam']['teamTricode']
         away_team = g['awayTeam']['teamTricode']
 
@@ -58,15 +68,15 @@ def fetch_live_games():
 
     temp_games.sort(key=lambda x: x['_utc'])
 
-    live_games_list = []
-    for game in temp_games:
-        live_games_list.append({
-            "game_id": game["game_id"],
-            "time": game["time"],
-            "home": game["home"],
-            "away": game["away"],
-            "home_score": game["home_score"],
-            "away_score": game["away_score"],
-            "game_status": game["game_status"]
-        })
-    return live_games_list
+    return [
+        {
+            "game_id": g["game_id"],
+            "time": g["time"],
+            "home": g["home"],
+            "away": g["away"],
+            "home_score": g["home_score"],
+            "away_score": g["away_score"],
+            "game_status": g["game_status"]
+        }
+        for g in temp_games
+    ]

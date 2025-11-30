@@ -41,7 +41,6 @@ def fetch_mvp_ladder():
         return None
 
     url = get_latest_mvp_ladder_url()
-
     with sync_playwright() as p:
         request_context = p.request.new_context()
         response = request_context.get(url)
@@ -76,16 +75,4 @@ def fetch_mvp_ladder():
             })
 
     ladder_data = ladder_data[:5]
-
-    if not ladder_data:
-        return None
-
-    # Ensure output folder exists
-    os.makedirs("jsons", exist_ok=True)
-
-    json_path = os.path.join(os.getcwd(), "jsons", "mvp_ladder.json")
-
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(ladder_data, f, ensure_ascii=False, indent=2)
-
-    return ladder_data
+    return ladder_data if ladder_data is not None else None

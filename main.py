@@ -31,7 +31,7 @@ threading.Thread(target=auto_update_schedule, args=(SCHEDULE_OUTPUT_FILE, 60), d
 threading.Thread(target=auto_update_live_games, args=(LIVE_GAMES_OUTPUT_FILE, 0.5), daemon=True).start()
 
 # === Start Cloudflared tunnel in background ===
-tunnel = CloudflareTunnel(tunnel_name="nba-standings", debug=True)
+tunnel = CloudflareTunnel(tunnel_name="nba-standings", debug=False)
 tunnel.run_in_background()
 
 # === Start web server ===
