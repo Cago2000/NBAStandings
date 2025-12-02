@@ -1,5 +1,5 @@
 import json
-
+from utils.file_paths import *
 
 def load_template(file_path):
     try:
@@ -9,56 +9,65 @@ def load_template(file_path):
         print("Template load error:", e)
         return "<html><body><p>Template error</p></body></html>"
 
-def load_standings(file_path):
+def load_standings():
     try:
-        with open(file_path, "r") as f:
+        with open(STANDINGS_FILEPATH, "r") as f:
             return json.load(f)
     except Exception:
         return {u: {"East": [], "West": []} for u in ["Can", "Marlon", "Ole"]}
 
-def load_standings_predictions(file_path):
+def load_standings_predictions():
     try:
-        with open(file_path) as f:
+        with open(STANDINGS_PREDICTIONS_FILEPATH) as f:
             return json.load(f)
     except Exception:
         return {u: {"East": [], "West": []} for u in ["Can", "Marlon", "Ole"]}
 
-def load_mvp_ladder(mvp_ladder_file):
+def load_mvp_ladder():
     try:
-        with open(mvp_ladder_file, encoding='utf-8') as f:
+        with open(MVP_LADDER_FILEPATH, encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
         print("Failed to load MVP ladder:", e)
         return {}
 
-def load_mvp_predictions(mvp_predictions_file):
+def load_mvp_predictions():
     try:
-        with open(mvp_predictions_file, encoding='utf-8') as f:
+        with open(MVP_PREDICTIONS_FILEPATH, encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
         print("Failed to load MVP Predictions:", e)
         return {}
 
-def load_schedule(schedule_file):
+def load_schedule():
     try:
-        with open(schedule_file, encoding='utf-8') as f:
+        with open(SCHEDULE_FILEPATH, encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
         print("Failed to load Schedule:", e)
         return {}
 
-def load_boxscores(boxscores_file):
+def load_live_games():
     try:
-        with open(boxscores_file, encoding='utf-8') as f:
+        with open(LIVE_GAMES_FILEPATH, encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print("Failed to load Live Games:", e)
+        return {}
+
+def load_boxscores():
+    try:
+        with open(BOXSCORE_FILEPATH, encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
         print("Failed to load Boxscores:", e)
         return {}
 
-def load_live_games(live_games_file):
+def load_live_boxscores():
     try:
-        with open(live_games_file, encoding='utf-8') as f:
+        with open(LIVE_BOXSCORE_FILEPATH, encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
-        print("Failed to load Live Games:", e)
+        print("Failed to load Live Boxscores:", e)
         return {}
+

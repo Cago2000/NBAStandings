@@ -21,14 +21,16 @@ def start_web_server(template_file, web_port):
                     continue
                 path = request.split(" ")[1]
                 data = {
-                    "Standings": load_standings("jsons/standings.json"),
-                    "Standings_Predictions": load_standings_predictions("jsons/standings_predictions.json"),
-                    "MVP_Ladder": load_mvp_ladder("jsons/mvp_ladder.json"),
-                    "MVP_Predictions": load_mvp_predictions("jsons/mvp_predictions.json"),
-                    "Schedule": load_schedule("jsons/schedule.json"),
+                    "Standings": load_standings(),
+                    "Standings_Predictions": load_standings_predictions(),
+                    "MVP_Ladder": load_mvp_ladder(),
+                    "MVP_Predictions": load_mvp_predictions(),
+                    "Schedule": load_schedule(),
+                    "Boxscore": load_boxscores()
                 }
                 live_data = {
-                    "Live_Games": load_live_games("jsons/live_games.json")
+                    "Live_Games": load_live_games(),
+                    "Live_Boxscore": load_live_boxscores()
                 }
                 status = "200 OK"
                 match path:
