@@ -3,7 +3,6 @@ from server.web_server import start_web_server
 from fetcher.auto_update import *
 from utils.logger import setup_logging
 from cloudflare.cloudflare_tunnel import CloudflareTunnel
-from utils.file_paths import *
 import socket
 
 print("Running on:", socket.gethostname())
@@ -25,7 +24,7 @@ threading.Thread(target=auto_update_mvp_ladder, args=(3600,), daemon=True).start
 threading.Thread(target=auto_update_schedule, args=(60,), daemon=True).start()
 threading.Thread(target=auto_update_live_games, args=(0.5,), daemon=True).start()
 threading.Thread(target=auto_update_boxscores, args=(2,), daemon=True).start()
-threading.Thread(target=auto_update_live_boxscores, args=(2,), daemon=True).start()
+threading.Thread(target=auto_update_live_boxscores, args=(5,), daemon=True).start()
 
 # === Start Cloudflared tunnel in background ===
 tunnel = CloudflareTunnel(tunnel_name="nba-standings", debug=False)
