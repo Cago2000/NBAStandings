@@ -22,8 +22,8 @@ if config["log_to_file"]:
 threading.Thread(target=auto_update_standings, args=(60,), daemon=True).start()
 threading.Thread(target=auto_update_mvp_ladder, args=(3600,), daemon=True).start()
 threading.Thread(target=auto_update_schedule, args=(60,), daemon=True).start()
-threading.Thread(target=auto_update_live_games, args=(0.5,), daemon=True).start()
-threading.Thread(target=auto_update_boxscores, args=(2,), daemon=True).start()
+threading.Thread(target=auto_update_live_games, args=(1,), daemon=True).start()
+threading.Thread(target=auto_update_boxscores, args=(60,), daemon=True).start()
 threading.Thread(target=auto_update_live_boxscores, args=(5,), daemon=True).start()
 
 # === Start Cloudflared tunnel in background ===
