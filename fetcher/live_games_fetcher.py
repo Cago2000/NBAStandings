@@ -1,13 +1,11 @@
 from nba_api.live.nba.endpoints import scoreboard
 from datetime import datetime
 import pytz
-import json
-import requests
+
 
 def fetch_live_games():
     germany = pytz.timezone('Europe/Berlin')
 
-    # --- Safe API call wrapper ---
     try:
         sb = scoreboard.ScoreBoard()
         games = sb.games.get_dict()
@@ -15,12 +13,10 @@ def fetch_live_games():
         print("⚠️ Live game fetch failed:", e)
         return []
 
-    # --- If API responded but sent no games ---
     if not games:
         print("⚠️ API returned no games (empty response).")
         return []
 
-    # --- Process games normally ---
     day_tags = {
         0: " (Mo)", 1: " (Tu)", 2: " (We)", 3: " (Th)",
         4: " (Fr)", 5: " (Sa)", 6: " (So)"
@@ -80,3 +76,40 @@ def fetch_live_games():
         }
         for g in temp_games
     ]
+
+
+def update_schedule_with_live_data(schedule_dict, live_games):
+    if not live_games:
+        return schedule_dict
+
+    live_game_map = {
+        game['game_id']: game
+        for game in live_games
+        if game.get('game_id')
+    }
+
+    updated_count = 0
+    for day, games in schedule_dict.items():
+        for game in games:
+            game_id = game.get('game_id')
+            if game_id in live_game_map:
+                live_data = live_game_map[game_id]
+                game['game_status'] = live_data['game_status']
+                game['home_score'] = live_data['home_score']
+                game['away_score'] = live_data['away_score']
+                updated_count += 1
+
+    if updated_count > 0:
+        print(f"✓ Updated {updated_count} games with live data")
+
+    return schedule_dict
+
+
+if __name__ == '__main__':
+    print("Testing live game fetcher...")
+    games = fetch_live_games()
+    print(f"\nFound {len(games)} games:")
+    for game in games:
+        status = game['game_status']
+        scores = f"{game['away_score']}-{game['home_score']}" if status != "Not Started" else "vs"
+        print(f"  {game['time']}: {game['away']} {scores} {game['home']} - {status}")

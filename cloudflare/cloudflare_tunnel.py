@@ -89,7 +89,7 @@ class CloudflareTunnel:
 
     def run_in_background(self):
         self._print_debug("Launching Cloudflare tunnel in background thread...")
-        thread = threading.Thread(target=self.start_tunnel, daemon=True)
+        thread = threading.Thread(target=self.start_tunnel, daemon=True, name="CloudflareTunnel")
         thread.start()
 
     def is_running(self):
