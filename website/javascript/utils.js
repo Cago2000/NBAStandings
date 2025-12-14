@@ -17,18 +17,27 @@ export function createGameRow(game) {
 
   const score = getScoreHTML(game);
 
-  tr.innerHTML = `
-    <td>${game.time}</td>
-    <td>
+tr.innerHTML = `
+  <td>${game.time}</td>
+
+  <td class="team-group away">
+    <div class="team-inner">
       <img src="assets/logos/${game.away}.svg" alt="${game.away} Logo" width="30" height="30">
-      ${game.away}
-    </td>
-    <td>
+      <span class="team-name">${game.away}</span>
+      <span class="team-seed">(${game.away_seed})</span>
+    </div>
+  </td>
+
+  <td class="team-group home">
+    <div class="team-inner">
       <img src="assets/logos/${game.home}.svg" alt="${game.home} Logo" width="30" height="30">
-      ${game.home}
-    </td>
-    <td class="score-cell ${gameStatusClass}">${score}</td>
-  `;
+      <span class="team-name">${game.home}</span>
+      <span class="team-seed">(${game.home_seed})</span>
+    </div>
+  </td>
+
+  <td class="score-cell ${gameStatusClass}">${score}</td>
+`;
 
   return tr;
 }

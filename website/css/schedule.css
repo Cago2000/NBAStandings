@@ -45,12 +45,12 @@
 
 .schedule-day th {
   background-color: #2c2c2c;
-  padding: 8px;
+  padding: 1px;
   font-size: 0.85em;
 }
 
 .schedule-day td {
-  padding: 8px;
+  padding: 0px;
   border-bottom: 1px solid #444;
 }
 
@@ -64,7 +64,6 @@
 
 .schedule-day td img {
   vertical-align: middle;
-  margin-right: 5px;
 }
 
 td.live-score {

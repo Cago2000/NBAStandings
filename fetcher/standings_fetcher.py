@@ -15,6 +15,7 @@ def fetch_standings():
             if conf in result:
                 result[conf].append({
                     "team": f"{row['TeamCity']} {row['TeamName']}",
+                    "seed": row['PlayoffRank'],
                     "games_behind": float(row['ConferenceGamesBack']),
                     "wins": int(row['WINS']),
                     "losses": int(row['LOSSES'])

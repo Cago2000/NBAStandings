@@ -2,9 +2,12 @@ from datetime import datetime, timedelta, time
 import pandas as pd
 import pytz
 from nba_api.stats.endpoints import ScheduleLeagueV2
-
+from fetcher.standings_fetcher import fetch_standings
 
 def fetch_schedule(days_back=1, days_with_games=4):
+
+    standings = fetch_standings()
+
     print("Starting schedule fetch")
 
     schedule = ScheduleLeagueV2()
@@ -67,6 +70,14 @@ def fetch_schedule(days_back=1, days_with_games=4):
             else:
                 day_overlap_tag = ""
 
+            home_seed, away_seed = 0, 0
+            for conference, standing_entries in standings.items():
+                for standing_entry in standing_entries:
+                    if f"{row['homeTeam_teamCity']} {row['homeTeam_teamName']}" == standing_entry['team']:
+                        home_seed = standing_entry['seed']
+                    if f"{row['awayTeam_teamCity']} {row['awayTeam_teamName']}" == standing_entry['team']:
+                        away_seed = standing_entry['seed']
+
             games_list.append({
                 "game_id": game_id,
                 "time": time_germany_str + day_overlap_tag,
@@ -75,10 +86,11 @@ def fetch_schedule(days_back=1, days_with_games=4):
                 "game_status": row['gameStatusText'],
                 "home_score": row['homeTeam_score'],
                 "away_score": row['awayTeam_score'],
+                "home_seed": home_seed,
+                "away_seed": away_seed
             })
 
         grouped[date_str] = games_list
         print(f"Added {len(games_list)} games for {date_str}")
-
     print(f"Finished, returning {len(grouped)} date groups")
     return grouped
