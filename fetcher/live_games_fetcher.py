@@ -3,23 +3,28 @@ from datetime import datetime
 import pytz
 
 
-def fetch_live_games():
-    print("Starting live games fetch")
+def fetch_live_games(verbose: bool = True):
+    if verbose:
+        print("Starting live games fetch")
 
     germany = pytz.timezone('Europe/Berlin')
 
     try:
         sb = scoreboard.ScoreBoard()
-        print("Created ScoreBoard object")
+        if verbose:
+            print("Created ScoreBoard object")
 
         games = sb.games.get_dict()
-        print(f"Fetched scoreboard data with {len(games)} games")
+        if verbose:
+            print(f"Fetched scoreboard data with {len(games)} games")
     except Exception as e:
-        print("⚠️ Live game fetch failed:", e)
+        if verbose:
+            print("⚠️ Live game fetch failed:", e)
         return []
 
     if not games:
-        print("⚠️ API returned no games (empty response).")
+        if verbose:
+            print("⚠️ API returned no games (empty response).")
         return []
 
     day_tags = {
@@ -28,7 +33,8 @@ def fetch_live_games():
     }
 
     temp_games = []
-    print("Processing individual games")
+    if verbose:
+        print("Processing individual games")
 
     for idx, g in enumerate(games, start=1):
         home_team = g['homeTeam']['teamTricode']
@@ -72,7 +78,8 @@ def fetch_live_games():
 
     temp_games.sort(key=lambda x: x['_utc'])
 
-    print(f"Finished processing {len(temp_games)} live games")
+    if verbose:
+        print(f"Finished processing {len(temp_games)} live games")
 
     return [
         {

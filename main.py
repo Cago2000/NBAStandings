@@ -10,7 +10,7 @@ CONFIG_FILE = os.path.join(BASE_DIR, "jsons/config.json")
 with open(CONFIG_FILE) as f:
     config = json.load(f)
 
-LOG_FILE = os.path.join(BASE_DIR, "logs/fetcher.log")
+LOG_FILE = os.path.join(BASE_DIR, "logs/log.log")
 if config["log_to_file"]:
     setup_logging(LOG_FILE)
 

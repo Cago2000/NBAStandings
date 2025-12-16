@@ -42,7 +42,7 @@ def auto_update_schedule(output_file, update_interval):
 
 def auto_update_live_games(output_file, update_interval):
     while True:
-        data = fetch_live_games()
+        data = fetch_live_games(verbose=False)
         if data:
             save_json(data, output_file)
         else:
