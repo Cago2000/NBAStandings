@@ -33,7 +33,7 @@ def auto_update_mvp_ladder(output_file, update_interval):
 
 def auto_update_schedule(output_file, update_interval):
     while True:
-        data = fetch_schedule()
+        data = fetch_schedule(verbose=False)
         if data:
             save_json(data, output_file)
         else:

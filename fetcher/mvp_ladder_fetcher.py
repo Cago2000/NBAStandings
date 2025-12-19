@@ -16,7 +16,6 @@ H3_SPAN_PATTERN = re.compile(
 
 
 def get_latest_mvp_ladder_url(base_url="https://www.nba.com/news/category/kia-race-to-the-mvp-ladder"):
-    print("Finding latest MVP ladder article")
     with sync_playwright() as p:
         request_context = p.request.new_context()
         response = request_context.get(base_url)
@@ -31,13 +30,11 @@ def get_latest_mvp_ladder_url(base_url="https://www.nba.com/news/category/kia-ra
     if not href.startswith("http"):
         href = "https://www.nba.com" + href
 
-    print(f"Found MVP ladder URL: {href}")
     return href
 
 
 def fetch_mvp_ladder():
     current_day = datetime.now().strftime("%A")
-    print(f"Today is {current_day}")
 
     if current_day not in ["Thursday", "Friday", "Saturday"]:
         print("Not a MVP ladder update day, skipping fetch")
@@ -45,14 +42,12 @@ def fetch_mvp_ladder():
 
     url = get_latest_mvp_ladder_url()
 
-    print("Fetching MVP ladder article")
     with sync_playwright() as p:
         request_context = p.request.new_context()
         response = request_context.get(url)
         html = response.text()
         request_context.dispose()
 
-    print("Parsing HTML for MVP candidates")
     lines = html.splitlines()
     ladder_data = []
 
@@ -81,5 +76,4 @@ def fetch_mvp_ladder():
             })
 
     ladder_data = ladder_data[:5]
-    print(f"Parsed {len(ladder_data)} MVP candidates")
     return ladder_data if ladder_data else None
