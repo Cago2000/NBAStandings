@@ -18,8 +18,10 @@ export function createGameRow(game) {
   const score = getScoreHTML(game);
 
 tr.innerHTML = `
-  <td>${game.time}</td>
-
+  <td>
+    ${game.time}
+    <span class="game-day-overlap">${game.day_overlap_tag}</span>
+  </td>
   <td class="team-group away">
     <div class="team-inner">
       <img src="assets/logos/${game.away}.svg" alt="${game.away} Logo" width="30" height="30">

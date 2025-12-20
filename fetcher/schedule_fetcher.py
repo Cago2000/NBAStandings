@@ -103,7 +103,8 @@ def fetch_schedule(days_back=1, days_with_games=4, verbose=False):
 
                 games_list.append({
                     "game_id": game_id,
-                    "time": time_germany_str + day_overlap_tag,
+                    "time": time_germany_str,
+                    "day_overlap_tag": day_overlap_tag,
                     "home": row['homeTeam_teamTricode'],
                     "away": row['awayTeam_teamTricode'],
                     "game_status": row['gameStatusText'],

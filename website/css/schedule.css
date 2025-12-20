@@ -111,6 +111,12 @@
   white-space: nowrap;
 }
 
+.game-day-overlap {
+    font-size: 0.85em;
+    color: #aaa;
+    display: block;
+}
+
 .game-status {
   font-size: 0.75em;
   color: #aaa;
