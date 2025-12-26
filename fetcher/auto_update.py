@@ -46,5 +46,5 @@ def auto_update_live_games(output_file, update_interval):
         if data:
             save_json(data, output_file)
         else:
-            print("Failed to fetch live games, retrying later...")
+            pass#print("Failed to fetch live games, retrying later...")
         time.sleep(update_interval)

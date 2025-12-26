@@ -33,7 +33,7 @@ export function appendScheduleDay(container, headingText, games) {
         <th>Time</th>
         <th>Away</th>
         <th>Home</th>
-        <th>Score</th>
+        <th>Status</th>
       </tr>
     </thead>
   `;

@@ -20,7 +20,7 @@ SCHEDULE_OUTPUT_FILE = "jsons/schedule.json"
 LIVE_GAMES_OUTPUT_FILE = "jsons/live_games.json"
 BOXSCORE_OUTPUT_FILE = "jsons/boxscores.json"
 
-threading.Thread(target=auto_update_standings, args=(STANDINGS_OUTPUT_FILE, 60), daemon=True, name="StandingsFetcher").start()
+threading.Thread(target=auto_update_standings, args=(STANDINGS_OUTPUT_FILE, 180), daemon=True, name="StandingsFetcher").start()
 threading.Thread(target=auto_update_mvp_ladder, args=(MVP_LADDER_OUTPUT_FILE, 3600), daemon=True, name="MVPFetcher").start()
 threading.Thread(target=auto_update_schedule, args=(SCHEDULE_OUTPUT_FILE, 60), daemon=True, name="ScheduleFetcher").start()
 threading.Thread(target=auto_update_live_games, args=(LIVE_GAMES_OUTPUT_FILE, 0.5), daemon=True, name="LiveGamesFetcher").start()

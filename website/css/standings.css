@@ -73,6 +73,14 @@ th {
 
 table tbody tr {
   transition: background-color 0.2s ease;
+  height: 40px;
+}
+
+table tbody td {
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 table tbody tr:hover {

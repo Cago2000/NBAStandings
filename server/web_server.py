@@ -26,7 +26,7 @@ def start_web_server(template_file, web_port):
                     "MVP_Ladder": load_mvp_ladder(),
                     "MVP_Predictions": load_mvp_predictions(),
                     "Schedule": load_schedule(),
-                    "Boxscore": load_boxscores()
+                    #"Boxscore": load_boxscores()
                 }
                 live_data = {
                     "Live_Games": load_live_games(),
