@@ -127,7 +127,12 @@
 td.live-score {
   color: #ff3c11;
   font-weight: bold;
-  animation: pulse 2s infinite;
+}
+
+.postponed {
+  font-size: 0.95em;
+  color: var(--text-light);
+  font-weight: bold;
 }
 
 @keyframes pulse {
