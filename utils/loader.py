@@ -52,7 +52,7 @@ def load_live_games():
         with open(LIVE_GAMES_FILEPATH, encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
-        print("Failed to load Live Games:", e)
+        #print("Failed to load Live Games:", e)
         return {}
 
 def load_boxscores():

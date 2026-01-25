@@ -19,12 +19,12 @@ def fetch_live_games(verbose: bool = True):
             print(f"Fetched scoreboard data with {len(games)} games")
     except Exception as e:
         if verbose:
-            print("⚠️ Live game fetch failed:", e)
+            print("Live game fetch failed:", e)
         return []
 
     if not games:
         if verbose:
-            print("⚠️ API returned no games (empty response).")
+            print("API returned no games (empty response).")
         return []
 
     day_tags = {
